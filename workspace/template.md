@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <style>
+    :root { --bg:#0b0f17; --text:#e5e7eb; --muted:#94a3b8; --line:#1f2937; --accent:#60a5fa; }
+    body{ margin:0; background:var(--bg); color:var(--text);
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans KR",Arial,sans-serif; line-height:1.75; }
+    .wrap{ max-width:920px; margin:0 auto; padding:28px 18px 56px; }
+    a{ color:var(--accent); text-decoration:none; }
+    header{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;
+      padding-bottom:14px; border-bottom:1px solid var(--line); margin-bottom:18px; }
+    .brand{ display:flex; flex-direction:column; gap:4px; }
+    .brand small{ color:var(--muted); }
+    .meta{ color:var(--muted); font-size:13px; margin:12px 0 18px; }
+    article{ background:rgba(17,24,39,.65); border:1px solid var(--line);
+      border-radius:16px; padding:18px; box-shadow: 0 10px 24px rgba(0,0,0,.18); }
+    h1{ margin:0 0 8px; font-size:24px; }
+    h2{ margin-top:22px; font-size:18px; }
+    code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    pre{ overflow:auto; padding:12px; border-radius:12px; background:#0a1226; border:1px solid rgba(148,163,184,.18); }
+    hr{ border:none; border-top:1px solid var(--line); margin:20px 0; }
+    .pill{ display:inline-block; padding:4px 10px; border-radius:999px;
+      border:1px solid rgba(96,165,250,.35); background:rgba(96,165,250,.08);
+      font-size:12px; color:#bfdbfe; margin-right:6px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <a href="{{ site.baseurl }}/"><strong>{{ site.title }}</strong></a>
+        <small>{{ site.description }}</small>
+      </div>
+      <nav>
+        <a href="{{ site.baseurl }}/">Home</a>
+        <a href="{{ site.baseurl }}/posts/">Posts</a>
+      </nav>
+    </header>
+
+    <article>
+      <h1>{{ page.title }}</h1>
+      <div class="meta">
+        {% if page.category %}<span class="pill">{{ page.category }}</span>{% endif %}
+        {% if page.date %}<span>{{ page.date | date: "%Y-%m-%d" }}</span>{% endif %}
+        {% if page.tags %}
+          <span style="margin-left:10px">
+            {% for t in page.tags %}<span class="pill">{{ t }}</span>{% endfor %}
+          </span>
+        {% endif %}
+      </div>
+
+      {{ content }}
+    </article>
+  </div>
+</body>
+</html>

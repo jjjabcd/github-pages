@@ -1,0 +1,11 @@
+title: "GitHub Pages"
+description: "Paper Reviews · Server & DevOps"
+url: "https://jjiabcd.github.io"
+baseurl: "/github-pages"
+markdown: kramdown
+
+exclude:
+  - workspace/
+  - .vscode/
+  - .gitignore
+  - README.md
