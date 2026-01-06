@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+<!--
+  CV Layout
+  - Applies a dedicated design system for /cv/ pages
+  - Keeps minima as the base theme
+-->
+
+<link rel="stylesheet" href="{{ '/assets/css/cv.css' | relative_url }}">
+
+<article class="cv-page">
+    <header class="cv-hero">
+        <div class="cv-hero-inner">
+            <h1 class="cv-title">{{ page.title | default: site.title }}</h1>
+            {% if site.description %}
+            <p class="cv-subtitle">{{ site.description }}</p>
+            {% endif %}
+        </div>
+    </header>
+
+    <section class="cv-container">
+        <div class="cv-card">
+            <div class="cv-content">
+                {{ content }}
+            </div>
+        </div>
+
+        <footer class="cv-footer">
+            <div class="cv-footer-inner">
+                <span>Last updated</span>
+                <span class="cv-dot">•</span>
+                <span>{{ site.time | date: "%Y-%m-%d" }}</span>
+            </div>
+        </footer>
+    </section>
+</article>
