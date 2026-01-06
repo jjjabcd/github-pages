@@ -1,141 +1,388 @@
+---
+layout: none
+---
 <!doctype html>
 <html lang="ko">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ page.title }} | {{ site.title }}</title>
+    <title>{{ site.title }} | {{ site.description }}</title>
+    <meta name="description" content="{{ site.description }}" />
     <style>
         :root {
             --bg: #0b0f17;
-            --text: #e5e7eb;
+            --card: #111827;
             --muted: #94a3b8;
+            --text: #e5e7eb;
             --line: #1f2937;
             --accent: #60a5fa;
+            --accent2: #34d399;
+        }
+
+        * {
+            box-sizing: border-box
         }
 
         body {
             margin: 0;
-            background: var(--bg);
+            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
+            background: radial-gradient(1200px 800px at 20% 0%, rgba(96, 165, 250, .18), transparent 55%),
+                radial-gradient(1000px 700px at 80% 10%, rgba(52, 211, 153, .14), transparent 55%),
+                var(--bg);
             color: var(--text);
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
-            line-height: 1.75;
-        }
-
-        .wrap {
-            max-width: 920px;
-            margin: 0 auto;
-            padding: 28px 18px 56px;
+            line-height: 1.6;
         }
 
         a {
-            color: var(--accent);
-            text-decoration: none;
+            color: inherit;
+            text-decoration: none
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 28px 18px 56px
         }
 
         header {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
             align-items: center;
             justify-content: space-between;
-            padding-bottom: 14px;
+            gap: 16px;
+            padding: 14px 0 24px;
             border-bottom: 1px solid var(--line);
-            margin-bottom: 18px;
         }
 
         .brand {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px
         }
 
-        .brand small {
+        .brand h1 {
+            margin: 0;
+            font-size: 20px;
+            letter-spacing: .2px
+        }
+
+        .brand p {
+            margin: 0;
             color: var(--muted);
+            font-size: 13px
         }
 
-        .meta {
-            color: var(--muted);
-            font-size: 13px;
-            margin: 12px 0 18px;
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-end
         }
 
-        article {
-            background: rgba(17, 24, 39, .65);
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 12px;
             border: 1px solid var(--line);
+            background: rgba(17, 24, 39, .65);
+            border-radius: 12px;
+            font-size: 13px;
+            color: var(--text);
+            transition: .15s ease;
+        }
+
+        .btn:hover {
+            border-color: rgba(96, 165, 250, .5);
+            transform: translateY(-1px)
+        }
+
+        .btn.primary {
+            border-color: rgba(96, 165, 250, .55);
+            box-shadow: 0 0 0 1px rgba(96, 165, 250, .12) inset
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.25fr .75fr;
+            gap: 16px;
+            padding: 26px 0 18px;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr
+            }
+
+            nav {
+                justify-content: flex-start
+            }
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            background: rgba(17, 24, 39, .70);
             border-radius: 16px;
-            padding: 18px;
+            padding: 16px;
             box-shadow: 0 10px 24px rgba(0, 0, 0, .18);
         }
 
-        h1 {
-            margin: 0 0 8px;
-            font-size: 24px;
+        .hero h2 {
+            margin: 0 0 10px;
+            font-size: 22px
         }
 
-        h2 {
-            margin-top: 22px;
-            font-size: 18px;
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px
         }
 
-        code {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px
         }
 
-        pre {
-            overflow: auto;
+        .chip {
+            padding: 6px 10px;
+            border: 1px solid var(--line);
+            background: rgba(15, 23, 42, .65);
+            border-radius: 999px;
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px
+        }
+
+        @media (max-width: 900px) {
+            .grid-2 {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 18px 0 10px;
+        }
+
+        .section-title h3 {
+            margin: 0;
+            font-size: 15px;
+            color: var(--text)
+        }
+
+        .section-title span {
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px
+        }
+
+        .item {
+            border: 1px solid var(--line);
+            border-radius: 14px;
             padding: 12px;
-            border-radius: 12px;
-            background: #0a1226;
-            border: 1px solid rgba(148, 163, 184, .18);
+            background: rgba(2, 6, 23, .35);
         }
 
-        hr {
-            border: none;
-            border-top: 1px solid var(--line);
-            margin: 20px 0;
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 6px
         }
 
-        .pill {
-            display: inline-block;
-            padding: 4px 10px;
+        .tag {
+            font-size: 11px;
+            padding: 3px 8px;
             border-radius: 999px;
             border: 1px solid rgba(96, 165, 250, .35);
-            background: rgba(96, 165, 250, .08);
-            font-size: 12px;
             color: #bfdbfe;
-            margin-right: 6px;
+            background: rgba(96, 165, 250, .08);
+        }
+
+        .date {
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        .item h4 {
+            margin: 0 0 6px;
+            font-size: 14px
+        }
+
+        .item p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .category-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 10px
+        }
+
+        @media (max-width: 560px) {
+            .category-cards {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .cat {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 12px;
+            background: rgba(17, 24, 39, .55);
+        }
+
+        .cat h4 {
+            margin: 0 0 6px;
+            font-size: 13px
+        }
+
+        .cat p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        footer {
+            margin-top: 28px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: space-between
         }
     </style>
 </head>
 
 <body>
-    <div class="wrap">
+    <div class="container">
+
         <header>
             <div class="brand">
-                <a href="{{ site.baseurl }}/"><strong>{{ site.title }}</strong></a>
-                <small>{{ site.description }}</small>
+                <h1>{{ site.title }}</h1>
+                <p>{{ site.description }}</p>
             </div>
             <nav>
-                <a href="{{ site.baseurl }}/">Home</a>
-                <a href="{{ site.baseurl }}/posts/">Posts</a>
+                <a class="btn primary" href="{{ site.baseurl }}/posts/">All Posts</a>
             </nav>
         </header>
 
-        <article>
-            <h1>{{ page.title }}</h1>
-            <div class="meta">
-                {% if page.category %}<span class="pill">{{ page.category }}</span>{% endif %}
-                {% if page.date %}<span>{{ page.date | date: "%Y-%m-%d" }}</span>{% endif %}
-                {% if page.tags %}
-                <span style="margin-left:10px">
-                    {% for t in page.tags %}<span class="pill">{{ t }}</span>{% endfor %}
-                </span>
-                {% endif %}
+        <section class="hero">
+            <div class="card">
+                <h2>대학원 과정에서 읽고, 만들고, 운영한 내용을 기록하는 블로그</h2>
+                <p>
+                    Paper Review와 Server &amp; DevOps 글을 중심으로, 재현 가능한 형태로 기록하는 것을 목표로 하는 소개 문장.
+                    글은 Markdown 기반으로 작성하고, 링크는 stable permalink로 유지하는 운영 원칙 제시.
+                </p>
+                <div class="chips">
+                    <span class="chip">Paper Review</span>
+                    <span class="chip">Server</span>
+                    <span class="chip">DevOps</span>
+                    <span class="chip">Docker</span>
+                    <span class="chip">PyTorch</span>
+                    <span class="chip">HPC</span>
+                </div>
             </div>
 
-            {{ content }}
-        </article>
+            <div class="card">
+                <div class="section-title">
+                    <h3>Start Here</h3>
+                    <span>운영 규칙</span>
+                </div>
+                <div class="list">
+                    <div class="item">
+                        <div class="meta"><span class="tag">Rule</span><span class="date">Always</span></div>
+                        <h4>Reproducibility First</h4>
+                        <p>command, config, pitfalls, reference를 최소 단위로 남기는 원칙.</p>
+                    </div>
+                    <div class="item">
+                        <div class="meta"><span class="tag">Rule</span><span class="date">Always</span></div>
+                        <h4>Stable Permalink</h4>
+                        <p>permalink를 고정하여 오래된 링크가 깨지지 않게 유지.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid-2">
+            <div class="card">
+                <div class="section-title">
+                    <h3>Latest Posts</h3>
+                    <span>최근 5개 수동 업데이트</span>
+                </div>
+
+                <div class="list">
+                    <!-- 예시 1: 테스트 글 -->
+                    <a class="item" href="{{ site.baseurl }}/posts/2026-01-06-uncertainty-fusion/">
+                        <div class="meta"><span class="tag">Paper Review</span><span class="date">2026-01-06</span>
+                        </div>
+                        <h4>Uncertainty-aware Multi-modal Fusion for QSAR (Test)</h4>
+                        <p>uncertainty-aware fusion 개념과 재현 포인트 정리.</p>
+                    </a>
+
+                    <!-- 예시 2: 서버 글 -->
+                    <a class="item" href="{{ site.baseurl }}/posts/2026-01-06-ubuntu-emergency-mode/">
+                        <div class="meta"><span class="tag">Server</span><span class="date">2026-01-06</span></div>
+                        <h4>Ubuntu Emergency Mode Recovery Checklist (Test)</h4>
+                        <p>journalctl, fstab, mount, RAID 확인 플로우 정리.</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section-title">
+                    <h3>Categories</h3>
+                    <span>2개로 단순 운영</span>
+                </div>
+
+                <div class="category-cards">
+                    <div class="cat">
+                        <h4>Paper Reviews</h4>
+                        <p>paper 구조, 핵심 contribution, limitation, reproducibility 관점 정리.</p>
+                    </div>
+                    <div class="cat">
+                        <h4>Server & DevOps</h4>
+                        <p>Ubuntu, GPU driver, Docker, NAS/RAID, SSH, troubleshooting 기록.</p>
+                    </div>
+                </div>
+
+                <div class="section-title" style="margin-top:16px">
+                    <h3>Browse</h3>
+                    <span>전체 목록</span>
+                </div>
+                <a class="btn" href="{{ site.baseurl }}/posts/">All Posts</a>
+            </div>
+        </section>
+
+        <footer>
+            <div>© {{ "now" | date: "%Y" }} {{ site.title }}. 기록은 재현 가능한 형태로 유지하는 것을 목표로 함.</div>
+            <div>Powered by GitHub Pages (Jekyll minimal).</div>
+        </footer>
+
     </div>
 </body>
 
