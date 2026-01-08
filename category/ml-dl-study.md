@@ -1,6 +1,6 @@
 ---
 layout: category
-title: "ML/DL studies"
-permalink: /category/ML-DL-study/
-category_key: ML-DL-study
+title: "ML/DL study"
+permalink: /category/ml-dl-study/
+category_key: ml-dl-study
 ---
