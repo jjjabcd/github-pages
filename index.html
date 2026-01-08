@@ -309,8 +309,10 @@ layout: none
         </header>
 
         <section class="hero">
-            <!-- LEFT COLUMN: intro + latest + categories/topics -->
+            <!-- LEFT COLUMN -->
             <div class="stack">
+
+                <!-- Intro -->
                 <div class="card">
                     <h2>화학정보학에 대한 공부를 기록하는 공간</h2>
                     <p>
@@ -324,6 +326,7 @@ layout: none
                     </div>
                 </div>
 
+                <!-- Latest Posts -->
                 <div class="card">
                     <div class="section-title">
                         <h3>Latest Posts</h3>
@@ -355,9 +358,12 @@ layout: none
                         {% endfor %}
                     </div>
 
-                    <a class="btn" style="margin-top:12px" href="{{ '/posts/' | relative_url }}">All Posts</a>
+                    <div style="margin-top:12px">
+                        <a class="btn" href="{{ '/posts/' | relative_url }}">All Posts</a>
+                    </div>
                 </div>
 
+                <!-- Categories + Topics (Merged) -->
                 <div class="card">
                     <div class="section-title">
                         <h3>Categories</h3>
@@ -370,29 +376,24 @@ layout: none
                         {% assign c3 = "ml-dl-studies" %}
                         {% assign c4 = "tools" %}
 
-                        {% assign n1 = site.categories[c1] | size %}
-                        {% assign n2 = site.categories[c2] | size %}
-                        {% assign n3 = site.categories[c3] | size %}
-                        {% assign n4 = site.categories[c4] | size %}
-
-                        <a class="cat" href="{{ '/category/' | append: c1 | append: '/' | relative_url }}">
-                            <h4>Paper Review <span class="count">({{ n1 }})</span></h4>
-                            <p>paper 구조, 핵심 contribution, limitation, reproducibility 관점 정리.</p>
+                        <a class="cat" href="{{ '/category/paper-review/' | relative_url }}">
+                            <h4>Paper Review <span class="count">({{ site.categories[c1] | size }})</span></h4>
+                            <p>paper 구조, contribution, reproducibility 중심 정리.</p>
                         </a>
 
-                        <a class="cat" href="{{ '/category/' | append: c2 | append: '/' | relative_url }}">
-                            <h4>Linux <span class="count">({{ n2 }})</span></h4>
-                            <p>Ubuntu, filesystem, troubleshooting, automation 기록.</p>
+                        <a class="cat" href="{{ '/category/linux/' | relative_url }}">
+                            <h4>Linux <span class="count">({{ site.categories[c2] | size }})</span></h4>
+                            <p>Ubuntu, filesystem, troubleshooting 기록.</p>
                         </a>
 
-                        <a class="cat" href="{{ '/category/' | append: c3 | append: '/' | relative_url }}">
-                            <h4>ML/DL studies <span class="count">({{ n3 }})</span></h4>
-                            <p>핵심 개념 정리, 구현/실험 노트, ablation 기록.</p>
+                        <a class="cat" href="{{ '/category/ml-dl-studies/' | relative_url }}">
+                            <h4>ML/DL studies <span class="count">({{ site.categories[c3] | size }})</span></h4>
+                            <p>개념 정리, 구현, 실험 노트.</p>
                         </a>
 
-                        <a class="cat" href="{{ '/category/' | append: c4 | append: '/' | relative_url }}">
-                            <h4>Tools <span class="count">({{ n4 }})</span></h4>
-                            <p>CLI, library usage, workflow, reproducible utilities.</p>
+                        <a class="cat" href="{{ '/category/tools/' | relative_url }}">
+                            <h4>Tools <span class="count">({{ site.categories[c4] | size }})</span></h4>
+                            <p>CLI, library usage, workflow.</p>
                         </a>
                     </div>
 
@@ -404,39 +405,22 @@ layout: none
                     <div class="chips">
                         <a class="chip" href="{{ '/topic/multi-modality/' | relative_url }}">multi-modality</a>
 
-                        {% assign tag_pairs = "" | split: "" %}
-                        {% for t in site.tags %}
-                        {% assign tag_name = t[0] %}
-                        {% assign tag_count = t[1] | size %}
-                        {% assign pair = tag_count | append: "::" | append: tag_name %}
-                        {% assign tag_pairs = tag_pairs | push: pair %}
-                        {% endfor %}
-
-                        {% assign tag_pairs_sorted = tag_pairs | sort | reverse %}
                         {% assign shown = 0 %}
-
-                        {% for pair in tag_pairs_sorted %}
-                        {% assign parts = pair | split: "::" %}
-                        {% assign tag_name = parts[1] %}
-
-                        {% if tag_name == "multi-modality" %}
-                        {% continue %}
-                        {% endif %}
-
-                        <a class="chip"
-                            href="{{ '/topic/' | append: (tag_name | slugify) | append: '/' | relative_url }}">{{
-                            tag_name }}</a>
-
+                        {% for t in site.tags %}
+                        {% if t[0] != "multi-modality" %}
+                        <a class="chip" href="{{ '/topic/' | append: (t[0] | slugify) | append: '/' | relative_url }}">
+                            {{ t[0] }}
+                        </a>
                         {% assign shown = shown | plus: 1 %}
-                        {% if shown >= 5 %}
-                        {% break %}
+                        {% if shown >= 6 %}{% break %}{% endif %}
                         {% endif %}
                         {% endfor %}
                     </div>
                 </div>
+
             </div>
 
-            <!-- RIGHT COLUMN: contact -->
+            <!-- RIGHT COLUMN -->
             <div class="card">
                 <div class="section-title">
                     <h3>Contact & Links</h3>
@@ -445,7 +429,7 @@ layout: none
 
                 <div class="list">
                     <a class="item" href="mailto:rlawlsgurjh@gmail.com">
-                        <div class="meta"><span class="tag">Email</span><span class="date"></span></div>
+                        <div class="meta"><span class="tag">Email</span></div>
                         <h4>rlawlsgurjh@gmail.com</h4>
                     </a>
 
@@ -456,12 +440,12 @@ layout: none
 
                     <a class="item" href="https://scholar.google.com/citations?user=8ly72dcAAAAJ&hl=ko" target="_blank"
                         rel="noopener">
-                        <div class="meta"><span class="tag">Google Scholar</span><span class="date">profile</span></div>
+                        <div class="meta"><span class="tag">Google Scholar</span></div>
                         <h4>Publications & Citations</h4>
                     </a>
 
                     <a class="item" href="https://orcid.org/0009-0000-2725-4703" target="_blank" rel="noopener">
-                        <div class="meta"><span class="tag">ORCID</span><span class="date">id</span></div>
+                        <div class="meta"><span class="tag">ORCID</span></div>
                         <h4>0009-0000-2725-4703</h4>
                     </a>
                 </div>
