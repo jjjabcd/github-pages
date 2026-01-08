@@ -1,6 +1,6 @@
 ---
 layout: topic
-title: "generative model"
+title: "Generative Model"
 permalink: /topic/generative-model/
 topic_key: generative-model
 ---

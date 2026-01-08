@@ -1,6 +1,6 @@
 ---
 layout: topic
-title: "multi-objective optimization"
+title: "Multi-Objective Optimization"
 permalink: /topic/multi-objective-optimization/
 topic_key: multi-objective-optimization
 ---
