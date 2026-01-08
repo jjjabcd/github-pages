@@ -1,0 +1,44 @@
+---
+layout: page
+---
+
+<section class="archive">
+    <div class="filter-row">
+        <a class="filter-btn" href="/posts/">All Posts</a>
+        <a class="filter-btn" href="/category/paper-review/">Paper Review</a>
+        <a class="filter-btn" href="/category/linux/">Linux</a>
+        <a class="filter-btn" href="/category/ml-dl-studies/">ML/DL studies</a>
+        <a class="filter-btn" href="/category/tools/">Tools</a>
+    </div>
+
+    <h2 class="archive-title">{{ page.title }}</h2>
+
+    <div class="post-list">
+        {% assign key = page.topic_key %}
+        {% assign items = site.tags[key] | sort: "date" | reverse %}
+        {% for post in items %}
+        <article class="post-card">
+            <div class="post-meta">
+                <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                {% if post.categories %}
+                {% for c in post.categories %}
+                <a class="pill" href="/category/{{ c | slugify }}/">{{ c }}</a>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <h3 class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+
+            {% if post.tags %}
+            <div class="tag-row">
+                {% for t in post.tags %}
+                <a class="chip" href="/topic/{{ t | slugify }}/">{{ t }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+</section>

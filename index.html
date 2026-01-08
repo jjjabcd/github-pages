@@ -275,6 +275,22 @@ layout: none
             gap: 12px;
             justify-content: space-between
         }
+
+        .count {
+            color: var(--muted);
+            font-weight: 500;
+            font-size: 12px;
+        }
+
+        .cat {
+            display: block;
+        }
+
+        .cat:hover {
+            border-color: rgba(96, 165, 250, .5);
+            transform: translateY(-1px);
+            transition: .15s ease;
+        }
     </style>
 </head>
 
@@ -287,8 +303,7 @@ layout: none
                 <p>{{ site.description }}</p>
             </div>
             <nav>
-                <a class="btn primary" href="{{ site.baseurl }}/posts/">All Posts</a>
-                <!-- TODO: If you provide your GitHub profile URL, add it here as a button -->
+                <a class="btn primary" href="{{ '/posts/' | relative_url }}">All Posts</a>
             </nav>
         </header>
 
@@ -296,8 +311,8 @@ layout: none
             <div class="card">
                 <h2>대학원 과정에서 읽고, 만들고, 운영한 내용을 기록하는 블로그</h2>
                 <p>
-                    Paper Review와 Server &amp; DevOps 글을 중심으로, 재현 가능한 형태로 기록하는 것을 목표로 하는 소개 문장.
-                    글은 Markdown 기반으로 작성하고, 링크는 stable permalink로 유지하는 운영 원칙 제시.
+                    Paper Review와 Server &amp; DevOps 글을 중심으로, 재현 가능한 형태로 기록하는 것을 목표로 함.
+                    글은 Markdown 기반으로 작성하며, 링크는 stable permalink를 유지함.
                 </p>
                 <div class="chips">
                     <span class="chip">Paper Review</span>
@@ -307,7 +322,6 @@ layout: none
                 </div>
             </div>
 
-            <!-- Start Here(운영 규칙) 제거 → Contact/Links 카드로 대체 -->
             <div class="card">
                 <div class="section-title">
                     <h3>Contact & Links</h3>
@@ -315,37 +329,46 @@ layout: none
                 </div>
 
                 <div class="list">
-                    <a class="item" href="mailto:rlawlsgurjh@gmila.com">
-                        <div class="meta"><span class="tag">Email</span><span class="date"></span></div>
-                        <h4>rlawlsgurjh@gmila.com</h4>
+                    <a class="item" href="mailto:rlawlsgurjh@gmail.com">
+                        <div class="meta">
+                            <span class="tag">Email</span>
+                        </div>
+                        <h4>rlawlsgurjh@gmail.com</h4>
                         <p>연락을 위한 메일 주소.</p>
                     </a>
 
-                    <!-- <a class="item" href="https://jjjabcd.github.io/cv/CV.html"> -->
-
-                    <a class="item" href="/cv/" target="_blank" rel="noopener">
+                    <a class="item" href="{{ '/cv/' | relative_url }}">
                         <div class="meta">
-                            <span class="tag">CV</span><span class="date">web</span>
+                            <span class="tag">CV</span>
+                            <span class="date">web</span>
                         </div>
                         <h4>Curriculum Vitae</h4>
                         <p>이력 및 연구 경력 페이지.</p>
                     </a>
 
-
                     <a class="item" href="https://sites.google.com/view/hallym-apclab/home?authuser=0">
-                        <div class="meta"><span class="tag">Lab</span><span class="date">web</span></div>
+                        <div class="meta">
+                            <span class="tag">Lab</span>
+                            <span class="date">web</span>
+                        </div>
                         <h4>Hallym APC Lab</h4>
                         <p>연구실 홈페이지.</p>
                     </a>
 
                     <a class="item" href="https://scholar.google.com/citations?user=8ly72dcAAAAJ&hl=ko">
-                        <div class="meta"><span class="tag">Google Scholar</span><span class="date">profile</span></div>
+                        <div class="meta">
+                            <span class="tag">Google Scholar</span>
+                            <span class="date">profile</span>
+                        </div>
                         <h4>Publications & Citations</h4>
                         <p>논문 및 citation 프로필.</p>
                     </a>
 
                     <a class="item" href="https://orcid.org/0009-0000-2725-4703">
-                        <div class="meta"><span class="tag">ORCID</span><span class="date">id</span></div>
+                        <div class="meta">
+                            <span class="tag">ORCID</span>
+                            <span class="date">id</span>
+                        </div>
                         <h4>0009-0000-2725-4703</h4>
                         <p>연구자 식별자 프로필.</p>
                     </a>
@@ -357,57 +380,121 @@ layout: none
             <div class="card">
                 <div class="section-title">
                     <h3>Latest Posts</h3>
-                    <span>최근 5개 수동 업데이트</span>
+                    <span>최근 5개 자동 업데이트</span>
                 </div>
 
                 <div class="list">
-                    <!-- 예시 1: 테스트 글 -->
-                    <a class="item" href="{{ site.baseurl }}/posts/2026-01-06-test-post/">
-                        <div class="meta"><span class="tag">Paper Review</span><span class="date">2026-01-06</span>
+                    {% assign latest_posts = site.posts | sort: "date" | reverse | slice: 0, 5 %}
+                    {% for post in latest_posts %}
+                    <a class="item" href="{{ post.url | relative_url }}">
+                        <div class="meta">
+                            <span class="tag">
+                                {% if post.categories and post.categories.size > 0 %}
+                                {{ post.categories[0] }}
+                                {% else %}
+                                Post
+                                {% endif %}
+                            </span>
+                            <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
                         </div>
-                        <h4>Test-2 (Test)</h4>
-                        <p>Test page</p>
+
+                        <h4>{{ post.title }}</h4>
+                        <p>
+                            {% if post.description %}
+                            {{ post.description }}
+                            {% else %}
+                            {{ post.excerpt | strip_html | truncate: 80 }}
+                            {% endif %}
+                        </p>
                     </a>
-                    <a class="item" href="{{ site.baseurl }}/posts/2026-01-06-test-post-2/">
-                        <div class="meta"><span class="tag">Paper Review</span><span class="date">2026-01-06</span>
-                        </div>
-                        <h4>Test-2 (Test)</h4>
-                        <p>Test page</p>
-                    </a>
+                    {% endfor %}
                 </div>
             </div>
 
             <div class="card">
                 <div class="section-title">
                     <h3>Categories</h3>
-                    <span>2개로 단순 운영</span>
+                    <span>post counts</span>
                 </div>
 
+                {% assign categories = "paper-review,linux,ml-dl-studies,tools" | split: "," %}
+
                 <div class="category-cards">
-                    <div class="cat">
-                        <h4>Paper Reviews</h4>
+                    {% for c in categories %}
+                    {% assign count = site.categories[c] | size %}
+                    <a class="cat" href="{{ '/category/' | append: c | append: '/' | relative_url }}">
+                        <h4>
+                            {{ c | replace: "-", " " | capitalize }}
+                            <span class="count">({{ count }})</span>
+                        </h4>
+
+                        {% case c %}
+                        {% when "paper-review" %}
                         <p>paper 구조, 핵심 contribution, limitation, reproducibility 관점 정리.</p>
-                    </div>
-                    <div class="cat">
-                        <h4>Server & DevOps</h4>
-                        <p>Ubuntu, GPU driver, Docker, NAS/RAID, SSH, troubleshooting 기록.</p>
-                    </div>
+                        {% when "linux" %}
+                        <p>Ubuntu, filesystem, troubleshooting, automation 기록.</p>
+                        {% when "ml-dl-studies" %}
+                        <p>핵심 개념 정리, 구현·실험 노트, ablation 기록.</p>
+                        {% when "tools" %}
+                        <p>CLI, library usage, workflow, reproducible utilities.</p>
+                        {% endcase %}
+                    </a>
+                    {% endfor %}
                 </div>
 
                 <div class="section-title" style="margin-top:16px">
-                    <h3>Browse</h3>
-                    <span>전체 목록</span>
+                    <h3>Topics</h3>
+                    <span>
+                        <a href="{{ '/topics/' | relative_url }}" style="color: var(--muted);">More</a>
+                    </span>
                 </div>
-                <a class="btn" href="{{ site.baseurl }}/posts/">All Posts</a>
+
+                <div class="chips">
+                    <a class="chip" href="{{ '/topic/multi-modality/' | relative_url }}">
+                        multi-modality
+                    </a>
+
+                    {% assign tag_pairs = "" | split: "" %}
+                    {% for t in site.tags %}
+                    {% assign name = t[0] %}
+                    {% assign size = t[1] | size %}
+                    {% assign pair = size | append: "::" | append: name %}
+                    {% assign tag_pairs = tag_pairs | push: pair %}
+                    {% endfor %}
+
+                    {% assign sorted = tag_pairs | sort | reverse %}
+                    {% assign shown = 0 %}
+
+                    {% for pair in sorted %}
+                    {% assign parts = pair | split: "::" %}
+                    {% assign tag = parts[1] %}
+
+                    {% if tag == "multi-modality" %}
+                    {% continue %}
+                    {% endif %}
+
+                    <a class="chip" href="{{ '/topic/' | append: tag | append: '/' | relative_url }}">
+                        {{ tag | replace: "-", " " }}
+                    </a>
+
+                    {% assign shown = shown | plus: 1 %}
+                    {% if shown >= 5 %}
+                    {% break %}
+                    {% endif %}
+                    {% endfor %}
+                </div>
+
+                <a class="btn" href="{{ '/posts/' | relative_url }}">All Posts</a>
             </div>
         </section>
 
         <footer>
-            <div>© {{ "now" | date: "%Y" }} {{ site.title }}. 기록은 재현 가능한 형태로 유지하는 것을 목표로 함.</div>
-            <div>Powered by GitHub Pages (Jekyll minimal).</div>
+            <div>© {{ "now" | date: "%Y" }} {{ site.title }}.</div>
+            <div>Powered by GitHub Pages (Jekyll).</div>
         </footer>
 
     </div>
+
     <script src="{{ '/assets/js/external-links.js' | relative_url }}"></script>
 </body>
 

@@ -1,0 +1,55 @@
+---
+layout: page
+title: "All Posts"
+permalink: /posts/
+---
+
+<section class="archive">
+    <div class="filter-row">
+        <a class="filter-btn" href="/posts/">All</a>
+        <a class="filter-btn" href="/category/paper-review/">Paper Review</a>
+        <a class="filter-btn" href="/category/linux/">Linux</a>
+        <a class="filter-btn" href="/category/ml-dl-studies/">ML/DL studies</a>
+        <a class="filter-btn" href="/category/tools/">Tools</a>
+    </div>
+
+    <div class="filter-row sub">
+        <a class="filter-chip" href="/topic/generative-model/">generative model</a>
+        <a class="filter-chip" href="/topic/multi-objective-optimization/">multi-objective optimization</a>
+        <a class="filter-chip" href="/topic/cheminformatics/">cheminformatics</a>
+        <a class="filter-chip" herf="/topic/multi-modality/">multi-modality</a>
+    </div>
+
+    <div class="post-list">
+        {% assign posts_sorted = site.posts | sort: "date" | reverse %}
+        {% for post in posts_sorted %}
+        <article class="post-card">
+            <div class="post-meta">
+                <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+
+                {% if post.categories %}
+                {% for c in post.categories %}
+                <a class="pill" href="/category/{{ c | slugify }}/">{{ c }}</a>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <h3 class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+
+            {% if post.excerpt %}
+            <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+            {% endif %}
+
+            {% if post.tags %}
+            <div class="tag-row">
+                {% for t in post.tags %}
+                <a class="chip" href="/topic/{{ t | slugify }}/">{{ t }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+</section>
