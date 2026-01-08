@@ -10,11 +10,6 @@ permalink: /cv/
   <a class="cv-chip" href="https://github.com/jjjabcd" target="_blank" rel="noopener">GitHub</a>
 </div>
 
-## Summary
-- M.S. student in Computer Science at Hallym University, APC Lab 소속
-- AI4Science(Chemistry) 및 Drug Design 중심으로 Reinforcement Learning, Generative Models 연구
-- Drug–Target 관련 예측 및 데이터 중심 모델링 경험 축적
-
 ## Research Interests
 - Reinforcement Learning
 - Multi-Objective Optimization
