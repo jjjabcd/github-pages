@@ -138,6 +138,10 @@ layout: none
             font-size: 14px
         }
 
+        .hero>.card .category-cards {
+            grid-template-columns: 1fr;
+        }
+
         .chips {
             display: flex;
             flex-wrap: wrap;
@@ -317,7 +321,6 @@ layout: none
                     <h2>화학정보학에 대한 공부를 기록하는 공간</h2>
                     <p>
                         화학정보학 관련 논문 및 ML/DL 개념 공부와 개발에 필요한 리눅스 관련 글 게시를 목표로 함.
-                        글은 Markdown 기반으로 작성하고, 링크는 stable permalink로 유지하는 운영 원칙 제시.
                     </p>
                     <div class="chips">
                         <span class="chip">Paper Review</span>
@@ -363,94 +366,98 @@ layout: none
                     </div>
                 </div>
 
-                <!-- Categories + Topics (Merged) -->
-                <div class="card">
-                    <div class="section-title">
-                        <h3>Categories</h3>
-                        <span>post counts</span>
-                    </div>
-
-                    <div class="category-cards">
-                        {% assign c1 = "paper-review" %}
-                        {% assign c2 = "linux" %}
-                        {% assign c3 = "ml-dl-studies" %}
-                        {% assign c4 = "tools" %}
-
-                        <a class="cat" href="{{ '/category/paper-review/' | relative_url }}">
-                            <h4>Paper Review <span class="count">({{ site.categories[c1] | size }})</span></h4>
-                            <p>paper 구조, contribution, reproducibility 중심 정리.</p>
-                        </a>
-
-                        <a class="cat" href="{{ '/category/linux/' | relative_url }}">
-                            <h4>Linux <span class="count">({{ site.categories[c2] | size }})</span></h4>
-                            <p>Ubuntu, filesystem, troubleshooting 기록.</p>
-                        </a>
-
-                        <a class="cat" href="{{ '/category/ml-dl-studies/' | relative_url }}">
-                            <h4>ML/DL studies <span class="count">({{ site.categories[c3] | size }})</span></h4>
-                            <p>개념 정리, 구현, 실험 노트.</p>
-                        </a>
-
-                        <a class="cat" href="{{ '/category/tools/' | relative_url }}">
-                            <h4>Tools <span class="count">({{ site.categories[c4] | size }})</span></h4>
-                            <p>CLI, library usage, workflow.</p>
-                        </a>
-                    </div>
-
-                    <div class="section-title" style="margin-top:16px">
-                        <h3>Topics</h3>
-                        <span><a href="{{ '/topics/' | relative_url }}" style="color: var(--muted);">More</a></span>
-                    </div>
-
-                    <div class="chips">
-                        <a class="chip" href="{{ '/topic/multi-modality/' | relative_url }}">multi-modality</a>
-
-                        {% assign shown = 0 %}
-                        {% for t in site.tags %}
-                        {% if t[0] != "multi-modality" %}
-                        <a class="chip" href="{{ '/topic/' | append: (t[0] | slugify) | append: '/' | relative_url }}">
-                            {{ t[0] }}
-                        </a>
-                        {% assign shown = shown | plus: 1 %}
-                        {% if shown >= 6 %}{% break %}{% endif %}
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-
             </div>
 
-            <!-- RIGHT COLUMN -->
+            <!-- RIGHT COLUMN: Categories + Topics -->
             <div class="card">
                 <div class="section-title">
-                    <h3>Contact & Links</h3>
-                    <span>profiles</span>
+                    <h3>Categories</h3>
+                    <span>post counts</span>
                 </div>
 
-                <div class="list">
-                    <a class="item" href="mailto:rlawlsgurjh@gmail.com">
-                        <div class="meta"><span class="tag">Email</span></div>
-                        <h4>rlawlsgurjh@gmail.com</h4>
+                <div class="category-cards">
+                    {% assign c1 = "paper-review" %}
+                    {% assign c2 = "linux" %}
+                    {% assign c3 = "ml-dl-studies" %}
+                    {% assign c4 = "tools" %}
+
+                    {% assign n1 = site.categories[c1] | size %}
+                    {% assign n2 = site.categories[c2] | size %}
+                    {% assign n3 = site.categories[c3] | size %}
+                    {% assign n4 = site.categories[c4] | size %}
+                    {% assign n5 = site.categories[c5] | size %}
+
+                    <a class="cat" href="{{ '/category/' | append: c1 | append: '/' | relative_url }}">
+                        <h4>Paper Review <span class="count">({{ n1 }})</span></h4>
+                        <p>Cheminformatics & Generative Model & </p>
                     </a>
 
-                    <a class="item" href="{{ '/cv/' | relative_url }}">
-                        <div class="meta"><span class="tag">CV</span><span class="date">web</span></div>
-                        <h4>Curriculum Vitae</h4>
+                    <a class="cat" href="{{ '/category/' | append: c2 | append: '/' | relative_url }}">
+                        <h4>Linux <span class="count">({{ n2 }})</span></h4>
+                        <p>Ubuntu, Miniconda, Jupyter, Environment </p>
                     </a>
 
-                    <a class="item" href="https://scholar.google.com/citations?user=8ly72dcAAAAJ&hl=ko" target="_blank"
-                        rel="noopener">
-                        <div class="meta"><span class="tag">Google Scholar</span></div>
-                        <h4>Publications & Citations</h4>
+                    <a class="cat" href="{{ '/category/' | append: c3 | append: '/' | relative_url }}">
+                        <h4>ML/DL studies <span class="count">({{ n3 }})</span></h4>
+                        <p>DL, linear algebra </p>
                     </a>
 
-                    <a class="item" href="https://orcid.org/0009-0000-2725-4703" target="_blank" rel="noopener">
-                        <div class="meta"><span class="tag">ORCID</span></div>
-                        <h4>0009-0000-2725-4703</h4>
+                    <a class="cat" href="{{ '/category/' | append: c4 | append: '/' | relative_url }}">
+                        <h4>Cheminformatics <span class="count">({{ n4 }})</span></h4>
+                        <p>SMILES, Molecular Property, Graph</p>
                     </a>
+
+                    <a class="cat" href="{{ '/category/' | append: c5 | append: '/' | relative_url }}">
+                        <h4>Tools <span class="count">({{ n4 }})</span></h4>
+                        <p>Git, Pytorch, RDKit, DeepChem </p>
+                    </a>
+                </div>
+
+                <div class="section-title" style="margin-top:16px">
+                    <h3>Topics</h3>
+                    <span><a href="{{ '/topics/' | relative_url }}" style="color: var(--muted);">More</a></span>
+                </div>
+
+                <div class="chips">
+                    <a class="chip" href="{{ '/topic/multi-modality/' | relative_url }}">multi-modality</a>
+
+                    {% assign tag_pairs = "" | split: "" %}
+                    {% for t in site.tags %}
+                    {% assign tag_name = t[0] %}
+                    {% assign tag_count = t[1] | size %}
+                    {% assign pair = tag_count | append: "::" | append: tag_name %}
+                    {% assign tag_pairs = tag_pairs | push: pair %}
+                    {% endfor %}
+
+                    {% assign tag_pairs_sorted = tag_pairs | sort | reverse %}
+                    {% assign shown = 0 %}
+
+                    {% for pair in tag_pairs_sorted %}
+                    {% assign parts = pair | split: "::" %}
+                    {% assign tag_name = parts[1] %}
+
+                    {% if tag_name == "multi-modality" %}
+                    {% continue %}
+                    {% endif %}
+
+                    <a class="chip" href="{{ '/topic/' | append: (tag_name | slugify) | append: '/' | relative_url }}">
+                        {{ tag_name }}
+                    </a>
+
+                    {% assign shown = shown | plus: 1 %}
+                    {% if shown >= 6 %}
+                    {% break %}
+                    {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                    <a class="btn" href="{{ '/posts/' | relative_url }}">All Posts</a>
+                    <a class="btn" href="{{ '/topics/' | relative_url }}">All Topics</a>
                 </div>
             </div>
         </section>
+
 
         <footer>
             <div>© {{ "now" | date: "%Y" }} {{ site.title }}.</div>
