@@ -5,16 +5,19 @@ permalink: /cv/
 ---
 
 <div class="cv-top-links">
-  <a class="cv-chip" href="https://www.notion.so/Jin-s-Study-194ee3c1d96b80a2b0cce212cc8d597e" target="_blank" rel="noopener">Homepage</a>
+  <a class="cv-chip" href="https://jjjabcd.github.io/github-pages/" target="_blank" rel="noopener">Homepage</a>
   <a class="cv-chip" href="https://scholar.google.co.kr/citations?user=8ly72dcAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
   <a class="cv-chip" href="https://github.com/jjjabcd" target="_blank" rel="noopener">GitHub</a>
 </div>
 
+## Contact
+ - Email: rlawlsgurjh@gmail.com
+
 ## Research Interests
+- AI4Science (Chemistry)
+- Drug Design
 - Reinforcement Learning
 - Multi-Objective Optimization
-- AI4Science (Chemistry)
-- Drug Design & Molecular Generation
 - Multi-modal Learning
 - Explainable AI (XAI)
 
@@ -52,9 +55,4 @@ permalink: /cv/
 ## Advisor
 - **Prof. Jonghwan Choi**  
   – Email: jonghwanc@hallym.ac.kr
-
----
-
-<div class="cv-brand">
-  <img alt="Hallym University Logo" src="https://www.hallym.ac.kr/.resources/hallym_univ_theme/hallym/ko/img/abouthallym/symbol-ui-emblem1.png" />
-</div>
+ ---
