@@ -1,0 +1,240 @@
+---
+layout: none
+---
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}" />
+    <style>
+        :root {
+            --bg: #0b0f17;
+            --card: #111827;
+            --muted: #94a3b8;
+            --text: #e5e7eb;
+            --line: #1f2937;
+            --accent: #60a5fa;
+            --accent2: #34d399;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
+            background: radial-gradient(1200px 800px at 20% 0%, rgba(96, 165, 250, .18), transparent 55%),
+                radial-gradient(1000px 700px at 80% 10%, rgba(52, 211, 153, .14), transparent 55%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 28px 18px 56px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 14px 0 24px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            gap: 6px
+        }
+
+        .brand h1 {
+            margin: 0;
+            font-size: 20px;
+            letter-spacing: .2px
+        }
+
+        .brand p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-end
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 12px;
+            border: 1px solid var(--line);
+            background: rgba(17, 24, 39, .65);
+            border-radius: 12px;
+            font-size: 13px;
+            color: var(--text);
+            transition: .15s ease;
+        }
+
+        .btn:hover {
+            border-color: rgba(96, 165, 250, .5);
+            transform: translateY(-1px)
+        }
+
+        .btn.primary {
+            border-color: rgba(96, 165, 250, .55);
+            box-shadow: 0 0 0 1px rgba(96, 165, 250, .12) inset;
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            background: rgba(17, 24, 39, .70);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, .18);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 0 0 10px;
+        }
+
+        .section-title h3 {
+            margin: 0;
+            font-size: 15px;
+            color: var(--text)
+        }
+
+        .section-title span {
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px
+        }
+
+        .item {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 12px;
+            background: rgba(2, 6, 23, .35);
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .tag {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(96, 165, 250, .35);
+            color: #bfdbfe;
+            background: rgba(96, 165, 250, .08);
+        }
+
+        .date {
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        .item h4 {
+            margin: 0 0 6px;
+            font-size: 14px
+        }
+
+        .item p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px
+        }
+
+        .chip {
+            padding: 6px 10px;
+            border: 1px solid var(--line);
+            background: rgba(15, 23, 42, .65);
+            border-radius: 999px;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        footer {
+            margin-top: 28px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: space-between;
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+            <div class="brand">
+                <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+                <p>{{ site.description }}</p>
+            </div>
+            <nav>
+                <a class="btn" href="{{ '/' | relative_url }}">Home</a>
+                <a class="btn primary" href="{{ '/posts/' | relative_url }}">All Posts</a>
+                <a class="btn" href="{{ '/cv/' | relative_url }}">CV</a>
+            </nav>
+        </header>
+
+        {{ content }}
+
+        <footer>
+            <div>© {{ "now" | date: "%Y" }} {{ site.title }}.</div>
+            <div>Powered by GitHub Pages (Jekyll).</div>
+        </footer>
+
+    </div>
+    <script src="{{ '/assets/js/external-links.js' | relative_url }}"></script>
+</body>
+
+</html>
