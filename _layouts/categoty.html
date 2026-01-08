@@ -15,7 +15,8 @@ layout: page
 
     <div class="post-list">
         {% assign key = page.category_key %}
-        {% assign items = site.categories[key] | sort: "date" | reverse %}
+        {% assign items = site.categories[key] | default: "" | split: "" %}
+        {% assign items = items | sort: "date" | reverse %}
         {% for post in items %}
         <article class="post-card">
             <div class="post-meta">

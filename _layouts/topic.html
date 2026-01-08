@@ -15,7 +15,8 @@ layout: page
 
     <div class="post-list">
         {% assign key = page.topic_key %}
-        {% assign items = site.tags[key] | sort: "date" | reverse %}
+        {% assign items = site.tags[key] | default: "" | split: "" %}
+        {% assign items = items | sort: "date" | reverse %}
         {% for post in items %}
         <article class="post-card">
             <div class="post-meta">
@@ -38,6 +39,14 @@ layout: page
                 {% endfor %}
             </div>
             {% endif %}
+
+            {% if site.tags[key] == nil %}
+            <p style="color:#94a3b8;">
+                No posts found for topic_key: <code>{{ key }}</code>. Check post tags.
+            </p>
+            {% endif %}
+
+
         </article>
         {% endfor %}
     </div>

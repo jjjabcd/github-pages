@@ -1,6 +1,6 @@
 ---
 layout: topic
-title: "cheminformatics"
+title: "Cheminformatics"
 permalink: /topic/cheminformatics/
 topic_key: cheminformatics
 ---
