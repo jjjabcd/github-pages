@@ -12,33 +12,70 @@ layout: shell
     Robust tag resolver:
     - page.topic_key is treated as "slug"
     - Find the real tag name whose slugify == topic_key
+    - NEVER fall back to site.posts (prevents "show all posts" bug)
     {%- endcomment -%}
 
-    {% assign wanted_slug = page.topic_key | default: "" %}
+    {% assign wanted_slug = page.topic_key | default: "" | strip %}
     {% assign real_tag = nil %}
 
+    {% if wanted_slug == "" %}
+    <p style="color: var(--muted); margin: 0 0 10px;">
+        Missing <code>topic_key</code> in this page front matter.
+    </p>
+    {% endif %}
+
+    {% if site.tags and site.tags.size > 0 and wanted_slug != "" %}
     {% for pair in site.tags %}
     {% assign tag_name = pair[0] %}
-    {% if tag_name | slugify == wanted_slug %}
+    {% if tag_name and (tag_name | slugify) == wanted_slug %}
     {% assign real_tag = tag_name %}
     {% break %}
     {% endif %}
     {% endfor %}
+    {% endif %}
 
     {% if real_tag %}
-    {% assign items = site.tags[real_tag] | sort: "date" | reverse %}
+    {% assign items = site.tags[real_tag] %}
+    {% if items == nil %}
+    {% assign items = "" | split: "" %}
+    {% endif %}
+    {% assign items = items | sort: "date" | reverse %}
     {% else %}
     {% assign items = "" | split: "" %}
     {% endif %}
 
+    {%- comment -%}
+    Debug helper (optional):
+    Uncomment if you want to verify tag resolution quickly.
+    {%- endcomment -%}
+    {%- comment -%}
+    <p style="color: var(--muted); margin: 10px 0 0;">
+        topic_key: <code>{{ wanted_slug }}</code>,
+        real_tag: <code>{{ real_tag }}</code>,
+        count: <code>{{ items | size }}</code>
+    </p>
+    {%- endcomment -%}
+
     {% if items.size == 0 %}
-    <p style="color: var(--muted); margin: 0;">
+    <p style="color: var(--muted); margin: 12px 0 0;">
         No posts found for topic: <code>{{ page.topic_key }}</code>
     </p>
-    {% if real_tag == nil %}
+
+    {% if real_tag == nil and wanted_slug != "" %}
     <p style="color: var(--muted); margin-top: 8px;">
-        Tip: post의 tags에 공백/대소문자/하이픈이 섞여 있을 수 있으니, tags 값을 확인하세요.
+        Tip: post의 <code>tags</code> 값이 <code>{{ page.topic_key }}</code>와 slug 기준으로 일치해야 합니다.
+        예: <code>tags: [{{ page.topic_key }}]</code>
     </p>
+
+    {% if site.tags and site.tags.size > 0 %}
+    <p style="color: var(--muted); margin-top: 8px;">
+        Available tags:
+        {% for pair in site.tags %}
+        {% assign tn = pair[0] %}
+        <code style="margin-right:6px;">{{ tn }}</code>
+        {% endfor %}
+    </p>
+    {% endif %}
     {% endif %}
     {% endif %}
 
