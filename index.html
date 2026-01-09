@@ -396,7 +396,7 @@ layout: none
                     </a>
 
                     <a class="cat" href="{{ '/category/' | append: c3 | append: '/' | relative_url }}">
-                        <h4>ML/DL studies <span class="count">({{ n3 }})</span></h4>
+                        <h4>ML/DL study <span class="count">({{ n3 }})</span></h4>
                         <p>DL, linear algebra </p>
                     </a>
 
@@ -417,35 +417,29 @@ layout: none
                 </div>
 
                 <div class="chips">
-                    {% if site.tags and site.tags.size > 0 %}
-                    {% assign tag_pairs = "" | split: "" %}
-                    {% for t in site.tags %}
-                    {% assign tag_name = t[0] %}
-                    {% assign tag_count = t[1] | size %}
-                    {% assign pair = tag_count | append: "::" | append: tag_name %}
-                    {% assign tag_pairs = tag_pairs | push: pair %}
-                    {% endfor %}
 
-                    {% assign tag_pairs_sorted = tag_pairs | sort | reverse %}
-                    {% assign shown = 0 %}
-
-                    {% for pair in tag_pairs_sorted %}
-                    {% assign parts = pair | split: "::" %}
-                    {% assign tag_name = parts[1] %}
-
-                    <a class="chip" href="{{ '/topic/' | append: (tag_name | slugify) | append: '/' | relative_url }}">
-                        {{ tag_name }}
+                    <a class="chip" href="{{ '/topic/multi-modality/' | relative_url }}">
+                        multi-modality
                     </a>
 
-                    {% assign shown = shown | plus: 1 %}
-                    {% if shown >= 8 %}
-                    {% break %}
-                    {% endif %}
-                    {% endfor %}
-                    {% else %}
-                    <span class="chip">(0)</span>
-                    {% endif %}
+                    <a class="chip" href="{{ '/topic/multi-objective-optimization/' | relative_url }}">
+                        multi-objective-optimization
+                    </a>
+
+                    <a class="chip" href="{{ '/topic/generative-model/' | relative_url }}">
+                        generative-model
+                    </a>
+
+                    <a class="chip" href="{{ '/topic/cheminformatics/' | relative_url }}">
+                        cheminformatics
+                    </a>
+
+                    <a class="chip" href="{{ '/topic/tools/' | relative_url }}">
+                        tools
+                    </a>
+
                 </div>
+
 
             </div>
         </section>
