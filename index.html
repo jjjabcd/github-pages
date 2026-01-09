@@ -417,8 +417,7 @@ layout: none
                 </div>
 
                 <div class="chips">
-                    <a class="chip" href="{{ '/topic/multi-modality/' | relative_url }}">multi-modality</a>
-
+                    {% if site.tags and site.tags.size > 0 %}
                     {% assign tag_pairs = "" | split: "" %}
                     {% for t in site.tags %}
                     {% assign tag_name = t[0] %}
@@ -434,20 +433,20 @@ layout: none
                     {% assign parts = pair | split: "::" %}
                     {% assign tag_name = parts[1] %}
 
-                    {% if tag_name == "multi-modality" %}
-                    {% continue %}
-                    {% endif %}
-
                     <a class="chip" href="{{ '/topic/' | append: (tag_name | slugify) | append: '/' | relative_url }}">
                         {{ tag_name }}
                     </a>
 
                     {% assign shown = shown | plus: 1 %}
-                    {% if shown >= 6 %}
+                    {% if shown >= 8 %}
                     {% break %}
                     {% endif %}
                     {% endfor %}
+                    {% else %}
+                    <span class="chip">(0)</span>
+                    {% endif %}
                 </div>
+
             </div>
         </section>
 
