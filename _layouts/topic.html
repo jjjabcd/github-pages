@@ -8,17 +8,42 @@ layout: shell
         <span>Topic</span>
     </div>
 
-    {% assign key = page.topic_key %}
-    {% assign items = site.tags[key] %}
+    {%- comment -%}
+    Robust tag resolver:
+    - page.topic_key is treated as "slug"
+    - Find the real tag name whose slugify == topic_key
+    {%- endcomment -%}
 
-    {% if items == nil or items.size == 0 %}
-    <p style="color: var(--muted); margin: 0;">
-        No posts found for topic: <code>{{ key }}</code>
-    </p>
+    {% assign wanted_slug = page.topic_key | default: "" %}
+    {% assign real_tag = nil %}
+
+    {% for pair in site.tags %}
+    {% assign tag_name = pair[0] %}
+    {% if tag_name | slugify == wanted_slug %}
+    {% assign real_tag = tag_name %}
+    {% break %}
+    {% endif %}
+    {% endfor %}
+
+    {% if real_tag %}
+    {% assign items = site.tags[real_tag] | sort: "date" | reverse %}
     {% else %}
-    {% assign items_sorted = items | sort: "date" | reverse %}
-    <div class="list">
-        {% for post in items_sorted %}
+    {% assign items = "" | split: "" %}
+    {% endif %}
+
+    {% if items.size == 0 %}
+    <p style="color: var(--muted); margin: 0;">
+        No posts found for topic: <code>{{ page.topic_key }}</code>
+    </p>
+    {% if real_tag == nil %}
+    <p style="color: var(--muted); margin-top: 8px;">
+        Tip: post의 tags에 공백/대소문자/하이픈이 섞여 있을 수 있으니, tags 값을 확인하세요.
+    </p>
+    {% endif %}
+    {% endif %}
+
+    <div class="list" style="margin-top: 12px;">
+        {% for post in items %}
         <a class="item" href="{{ post.url | relative_url }}">
             <div class="meta">
                 {% if post.categories and post.categories.size > 0 %}
@@ -40,5 +65,4 @@ layout: shell
         </a>
         {% endfor %}
     </div>
-    {% endif %}
 </div>
