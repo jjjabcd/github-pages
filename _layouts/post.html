@@ -152,27 +152,28 @@
 
         <article>
             <h1>{{ page.title }}</h1>
-            <div class="meta">
-                {% if page.date %}
-                <span>{{ page.date | date: "%Y-%m-%d" }}</span>
-                {% endif %}
+            <div class="meta" style="margin-top: 6px;">
 
                 {% if page.categories and page.categories.size > 0 %}
-                <span style="margin-left:10px">
+                <div style="margin-bottom: 4px;">
+                    <strong>Category:</strong>
                     {% for c in page.categories %}
                     <span class="pill">{{ c }}</span>
                     {% endfor %}
-                </span>
+                </div>
                 {% endif %}
 
                 {% if page.tags and page.tags.size > 0 %}
-                <span style="margin-left:10px">
+                <div>
+                    <strong>Topic:</strong>
                     {% for t in page.tags %}
                     <span class="pill">{{ t }}</span>
                     {% endfor %}
-                </span>
+                </div>
                 {% endif %}
+
             </div>
+
             {{ content }}
         </article>
     </div>
