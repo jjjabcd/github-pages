@@ -3,6 +3,18 @@ layout: shell
 ---
 
 <div class="card">
+    <p style="color: var(--muted); margin: 0 0 10px; font-size: 12px;">
+        DEBUG: topic_key=<code>{{ page.topic_key }}</code>
+    </p>
+
+    <pre
+        style="margin: 0 0 12px; padding: 12px; border-radius: 12px; background: rgba(2,6,23,.35); border: 1px solid var(--line); color: var(--muted); font-size: 12px; overflow:auto;">
+    available tags:
+    {% for pair in site.tags %}
+    - {{ pair[0] }}  (slug: {{ pair[0] | slugify }})  count={{ pair[1] | size }}
+    {% endfor %}
+    </pre>
+
     <div class="section-title">
         <h3>{{ page.title }}</h3>
         <span>Topic</span>
