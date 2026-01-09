@@ -1,33 +1,25 @@
 ---
-layout: ml-dl-study
+layout: shell
 title: "Topics"
 permalink: /topics/
 ---
 
-<section class="archive">
-    <p style="color: var(--muted); margin-top: 0;">
+<div class="card">
+    <div class="section-title">
+        <h3>All Topics</h3>
+        <span>tag index</span>
+    </div>
+
+    <p style="color: var(--muted); margin: 0 0 10px;">
         tag 기반으로 분류된 Topic 목록과 post count.
     </p>
 
-    {% assign tag_pairs = "" | split: "" %}
-    {% for t in site.tags %}
-    {% assign tag_name = t[0] %}
-    {% assign tag_count = t[1] | size %}
-    {% assign pair = tag_count | append: "::" | append: tag_name %}
-    {% assign tag_pairs = tag_pairs | push: pair %}
-    {% endfor %}
-
-    {% assign tag_pairs_sorted = tag_pairs | sort | reverse %}
-
-    <div class="category-cards">
-        {% for pair in tag_pairs_sorted %}
-        {% assign parts = pair | split: "::" %}
-        {% assign tag_count = parts[0] %}
-        {% assign tag_name = parts[1] %}
-
-        <a class="cat" href="{{ site.baseurl }}/topic/{{ tag_name | slugify }}/">
-            <h4>{{ tag_name }} <span class="count">({{ tag_count }})</span></h4>
+    <div class="chips">
+        {% assign tag_names = site.tags | map: "first" | sort %}
+        {% for t in tag_names %}
+        <a class="chip" href="{{ '/topic/' | append: (t | slugify) | append: '/' | relative_url }}">
+            {{ t }} ({{ site.tags[t] | size }})
         </a>
         {% endfor %}
     </div>
-</section>
+</div>
