@@ -1,48 +1,20 @@
 ---
 layout: shell
+title: "Topics"
+permalink: /topics/
 ---
 
 <div class="card">
     <div class="section-title">
-        <h3>{{ page.title }}</h3>
-        <span>Topic</span>
+        <h3>All Topics</h3>
+        <span>tag index</span>
     </div>
 
-    {% assign key = page.topic_key %}
-    {% assign items = site.tags[key] %}
-
-    {% if items == nil %}
-    {% assign items = "" | split: "" %}
-    {% endif %}
-
-    {% assign items = items | sort: "date" | reverse %}
-
-    {% if items.size == 0 %}
-    <p style="color: var(--muted); margin: 0;">
-        No posts found for topic: <code>{{ key }}</code>
-    </p>
-    {% endif %}
-
-    <div class="list">
-        {% for post in items %}
-        <a class="item" href="{{ post.url | relative_url }}">
-            <div class="meta">
-                {% if post.categories and post.categories.size > 0 %}
-                <span class="tag">{{ post.categories[0] }}</span>
-                {% else %}
-                <span class="tag">post</span>
-                {% endif %}
-                <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
-            </div>
-
-            <h4>{{ post.title }}</h4>
-            <p>
-                {% if post.description %}
-                {{ post.description }}
-                {% else %}
-                {{ post.excerpt | strip_html | truncate: 80 }}
-                {% endif %}
-            </p>
+    <div class="chips">
+        {% assign tag_names = site.tags | map: "first" | sort %}
+        {% for t in tag_names %}
+        <a class="chip" href="{{ '/topic/' | append: (t | slugify) | append: '/' | relative_url }}">
+            {{ t }}
         </a>
         {% endfor %}
     </div>
