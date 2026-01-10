@@ -16,12 +16,15 @@ permalink: /categories/
         {% assign cnt = 0 %}
 
         {% for post in site.posts %}
+        {% assign cats_joined = "" %}
         {% if post.categories and post.categories.size > 0 %}
-        {% for c in post.categories %}
-        {% if c | slugify == slug %}
-        {% assign cnt = cnt | plus: 1 %}
+        {% assign cats_joined = post.categories | join: " " | downcase %}
         {% endif %}
-        {% endfor %}
+
+        {% assign slug_lc = slug | downcase %}
+
+        {% if cats_joined contains slug_lc %}
+        <!-- 여기에서 post 출력 -->
         {% endif %}
         {% endfor %}
 
@@ -33,6 +36,49 @@ permalink: /categories/
 
     {% for item in site.data.category_list %}
     {% assign slug = item.slug %}
+    <div id="{{ slug }}" style="scroll-margin-top: 90px;"></div>
+
+    <div class="section-title" style="margin-top: 18px;">
+        <h3>{{ item.title }}</h3>
+        <span>{{ slug }}</span>
+    </div>
+
+    {% assign found_any = false %}
+
+    <div class="list">
+        {% for post in site.posts %}
+        {% assign cat_tokens = "" %}
+        {% if post.categories and post.categories.size > 0 %}
+        {% assign cat_tokens = post.categories | join: "|" | downcase %}
+        {% endif %}
+
+        {% assign slug_token = slug | downcase %}
+
+        {% if cat_tokens contains slug_token %}
+        {% assign found_any = true %}
+        <a class="item" href="{{ post.url | relative_url }}">
+            <div class="meta">
+                <span class="tag">{{ item.title }}</span>
+                <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
+            </div>
+            <h4>{{ post.title }}</h4>
+            <p>
+                {% if post.description %}
+                {{ post.description }}
+                {% else %}
+                {{ post.excerpt | strip_html | truncate: 80 }}
+                {% endif %}
+            </p>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    {% unless found_any %}
+    <p style="color: var(--muted); margin: 0 0 10px;">No posts found.</p>
+    {% endunless %}
+    {% endfor %}
+
 
     <div id="{{ slug }}" style="scroll-margin-top: 90px;"></div>
 
