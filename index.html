@@ -342,10 +342,20 @@ layout: none
                         <a class="item" href="{{ post.url | relative_url }}">
                             <div class="meta">
                                 {% if post.categories and post.categories.size > 0 %}
-                                <span class="tag">{{ post.categories[0] }}</span>
+                                {% assign c0_slug = post.categories[0] | slugify %}
+                                {% assign c0_display = post.categories[0] %}
+
+                                {% for item in site.data.category_list %}
+                                {% if item.slug == c0_slug %}
+                                {% assign c0_display = item.title %}
+                                {% endif %}
+                                {% endfor %}
+
+                                <span class="tag">{{ c0_display }}</span>
                                 {% else %}
                                 <span class="tag">Post</span>
                                 {% endif %}
+
                                 <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
                             </div>
 
@@ -378,31 +388,26 @@ layout: none
                     {% assign c4 = "cheminformatics" %}
                     {% assign c5 = "tools" %}
 
-                    {%- assign a1 = site.categories[c1] -%}
-                    {%- assign a2 = site.categories[c2] -%}
-                    {%- assign a3 = site.categories[c3] -%}
-                    {%- assign a4 = site.categories[c4] -%}
-                    {%- assign a5 = site.categories[c5] -%}
+                    {% assign n1 = 0 %}
+                    {% assign n2 = 0 %}
+                    {% assign n3 = 0 %}
+                    {% assign n4 = 0 %}
+                    {% assign n5 = 0 %}
 
-                    {%- if a1 == nil -%}{%- assign n1 = 0 -%}{%- else -%}{%- assign n1 = a1 | size -%}{%- endif -%}
-                    {%- if a2 == nil -%}{%- assign n2 = 0 -%}{%- else -%}{%- assign n2 = a2 | size -%}{%- endif -%}
-                    {%- if a3 == nil -%}{%- assign n3 = 0 -%}{%- else -%}{%- assign n3 = a3 | size -%}{%- endif -%}
-                    {%- if a4 == nil -%}{%- assign n4 = 0 -%}{%- else -%}{%- assign n4 = a4 | size -%}{%- endif -%}
-                    {%- if a5 == nil -%}{%- assign n5 = 0 -%}{%- else -%}{%- assign n5 = a5 | size -%}{%- endif -%}
+                    {% for post in site.posts %}
+                    {% if post.categories and post.categories.size > 0 %}
+                    {% for c in post.categories %}
+                    {% assign c_slug = c | slugify %}
 
-                    {%- assign t1 = "Paper Review" -%}
-                    {%- assign t2 = "Linux" -%}
-                    {%- assign t3 = "AI" -%}
-                    {%- assign t4 = "Cheminformatics" -%}
-                    {%- assign t5 = "Tools" -%}
+                    {% if c_slug == c1 %}{% assign n1 = n1 | plus: 1 %}{% endif %}
+                    {% if c_slug == c2 %}{% assign n2 = n2 | plus: 1 %}{% endif %}
+                    {% if c_slug == c3 %}{% assign n3 = n3 | plus: 1 %}{% endif %}
+                    {% if c_slug == c4 %}{% assign n4 = n4 | plus: 1 %}{% endif %}
+                    {% if c_slug == c5 %}{% assign n5 = n5 | plus: 1 %}{% endif %}
 
-                    {%- for item in site.data.category_list -%}
-                    {%- if item.slug == c1 -%}{%- assign t1 = item.title -%}{%- endif -%}
-                    {%- if item.slug == c2 -%}{%- assign t2 = item.title -%}{%- endif -%}
-                    {%- if item.slug == c3 -%}{%- assign t3 = item.title -%}{%- endif -%}
-                    {%- if item.slug == c4 -%}{%- assign t4 = item.title -%}{%- endif -%}
-                    {%- if item.slug == c5 -%}{%- assign t5 = item.title -%}{%- endif -%}
-                    {%- endfor -%}
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
 
                     <a class="cat" href="{{ '/categories/#' | append: c1 | relative_url }}">
                         <h4>{{ t1 }} <span class="count">({{ n1 }})</span></h4>
