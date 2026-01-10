@@ -418,7 +418,7 @@ layout: none
 
                 <div class="chips">
                     {% for item in site.data.tag_list %}
-                    <a class="chip" href="{{ '/tags/#' | append: item.slug | relative_url }}">{{ item.slug }}</a>
+                    <a class="chip" href="{{ '/tags/#' | append: item.slug | relative_url }}">{{ item.title }}</a>
                     {% endfor %}
                 </div>
             </div>
