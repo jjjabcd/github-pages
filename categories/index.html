@@ -13,9 +13,20 @@ permalink: /categories/
     <!-- Category chips -->
     <div class="chips">
         {% for item in site.data.category_list %}
-        <a class="chip" href="#{{ item.slug }}">{{ item.title }}</a>
+        {% assign slug = item.slug %}
+        {% assign posts_for_cat = site.categories[slug] %}
+        {% if posts_for_cat == nil %}
+        {% assign cnt = 0 %}
+        {% else %}
+        {% assign cnt = posts_for_cat | size %}
+        {% endif %}
+
+        <a class="chip" href="#{{ slug }}">
+            {{ item.title }} <span style="opacity:.75;">({{ cnt }})</span>
+        </a>
         {% endfor %}
     </div>
+
 
     <hr>
 

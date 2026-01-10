@@ -374,42 +374,62 @@ layout: none
                 <div class="category-cards">
                     {% assign c1 = "paper-review" %}
                     {% assign c2 = "linux" %}
-                    {% assign c3 = "ml-dl-study" %}
+                    {% assign c3 = "ai" %}
                     {% assign c4 = "cheminformatics" %}
                     {% assign c5 = "tools" %}
 
+                    {%- assign a1 = site.categories[c1] -%}
+                    {%- assign a2 = site.categories[c2] -%}
+                    {%- assign a3 = site.categories[c3] -%}
+                    {%- assign a4 = site.categories[c4] -%}
+                    {%- assign a5 = site.categories[c5] -%}
 
-                    {% assign n1 = site.categories[c1] | size %}
-                    {% assign n2 = site.categories[c2] | size %}
-                    {% assign n3 = site.categories[c3] | size %}
-                    {% assign n4 = site.categories[c4] | size %}
-                    {% assign n5 = site.categories[c5] | size %}
+                    {%- if a1 == nil -%}{%- assign n1 = 0 -%}{%- else -%}{%- assign n1 = a1 | size -%}{%- endif -%}
+                    {%- if a2 == nil -%}{%- assign n2 = 0 -%}{%- else -%}{%- assign n2 = a2 | size -%}{%- endif -%}
+                    {%- if a3 == nil -%}{%- assign n3 = 0 -%}{%- else -%}{%- assign n3 = a3 | size -%}{%- endif -%}
+                    {%- if a4 == nil -%}{%- assign n4 = 0 -%}{%- else -%}{%- assign n4 = a4 | size -%}{%- endif -%}
+                    {%- if a5 == nil -%}{%- assign n5 = 0 -%}{%- else -%}{%- assign n5 = a5 | size -%}{%- endif -%}
+
+                    {%- assign t1 = "Paper Review" -%}
+                    {%- assign t2 = "Linux" -%}
+                    {%- assign t3 = "AI" -%}
+                    {%- assign t4 = "Cheminformatics" -%}
+                    {%- assign t5 = "Tools" -%}
+
+                    {%- for item in site.data.category_list -%}
+                    {%- if item.slug == c1 -%}{%- assign t1 = item.title -%}{%- endif -%}
+                    {%- if item.slug == c2 -%}{%- assign t2 = item.title -%}{%- endif -%}
+                    {%- if item.slug == c3 -%}{%- assign t3 = item.title -%}{%- endif -%}
+                    {%- if item.slug == c4 -%}{%- assign t4 = item.title -%}{%- endif -%}
+                    {%- if item.slug == c5 -%}{%- assign t5 = item.title -%}{%- endif -%}
+                    {%- endfor -%}
 
                     <a class="cat" href="{{ '/categories/#' | append: c1 | relative_url }}">
-                        <h4>Paper Review <span class="count">({{ n1 }})</span></h4>
-                        <p>Cheminformatics & Generative Model & </p>
+                        <h4>{{ t1 }} <span class="count">({{ n1 }})</span></h4>
+                        <p>Cheminformatics, Generative Model, Multi-objective Optimization</p>
                     </a>
 
-                    <a class="cat" href="{{ '/category/' | append: c2 | append: '/' | relative_url }}">
-                        <h4>Linux <span class="count">({{ n2 }})</span></h4>
-                        <p>Ubuntu, Miniconda, Jupyter, Environment Setting </p>
+                    <a class="cat" href="{{ '/categories/#' | append: c2 | relative_url }}">
+                        <h4>{{ t2 }} <span class="count">({{ n2 }})</span></h4>
+                        <p>Ubuntu, Miniconda, Jupyter, Environment</p>
                     </a>
 
-                    <a class="cat" href="{{ '/category/' | append: c3 | append: '/' | relative_url }}">
-                        <h4>AI <span class="count">({{ n3 }})</span></h4>
-                        <p>ML/DL, Generative Model, Reinforcement Learning </p>
+                    <a class="cat" href="{{ '/categories/#' | append: c3 | relative_url }}">
+                        <h4>{{ t3 }} <span class="count">({{ n3 }})</span></h4>
+                        <p>ML/DL, Generative Model, Reinforcement Learning</p>
                     </a>
 
-                    <a class="cat" href="{{ '/category/' | append: c4 | append: '/' | relative_url }}">
-                        <h4>Cheminformatics <span class="count">({{ n4 }})</span></h4>
+                    <a class="cat" href="{{ '/categories/#' | append: c4 | relative_url }}">
+                        <h4>{{ t4 }} <span class="count">({{ n4 }})</span></h4>
                         <p>Molecular Representation, Molecular Property</p>
                     </a>
 
-                    <a class="cat" href="{{ '/category/' | append: c5 | append: '/' | relative_url }}">
-                        <h4>Tools <span class="count">({{ n5 }})</span></h4>
-                        <p>GitHub, Pytorch, RDKit, DeepChem </p>
+                    <a class="cat" href="{{ '/categories/#' | append: c5 | relative_url }}">
+                        <h4>{{ t5 }} <span class="count">({{ n5 }})</span></h4>
+                        <p>GitHub, PyTorch, RDKit, DeepChem</p>
                     </a>
                 </div>
+
 
                 <div class="section-title" style="margin-top:16px">
                     <h3>Tags</h3>
