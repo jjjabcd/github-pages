@@ -2,7 +2,7 @@
 layout: post
 title: "SMILES 표기법"
 date: 2025-04-04
-categories: [Cheminformatics]
+categories: [cheminformatics]
 tags:
   - cheminformatics
   - molecular-representation

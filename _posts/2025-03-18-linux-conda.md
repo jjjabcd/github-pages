@@ -2,7 +2,7 @@
 layout: post
 title: "Ubuntu에서 Miniconda 설치"
 date: 2025-03-18
-categories: [Linux]
+categories: [linux]
 tags:
   - ubuntu
   - miniconda

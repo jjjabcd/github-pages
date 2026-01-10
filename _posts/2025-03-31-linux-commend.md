@@ -2,7 +2,7 @@
 layout: post
 title: "리눅스 명령어 정리"
 date: 2025-03-31
-categories: [Linux]
+categories: [linux]
 tags:
   - ubuntu
 description: "Test post for Linux category."

@@ -2,7 +2,7 @@
 layout: post
 title: "SSH 접속 후 jupyter 사용"
 date: 2025-03-21
-categories: [Linux]
+categories: [linux]
 tags:
   - ubuntu
   - miniconda

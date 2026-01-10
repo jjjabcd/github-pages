@@ -2,7 +2,7 @@
 layout: post
 title: "environment.yml & requirements.txt 사용법"
 date: 2025-03-20
-categories: [Linux]
+categories: [linux]
 tags:
   - ubuntu
   - miniconda
