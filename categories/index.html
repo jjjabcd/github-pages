@@ -10,40 +10,49 @@ permalink: /categories/
         <span>post counts</span>
     </div>
 
-    <!-- Chips -->
+    <!-- DEBUG (필요하면 배포 후 삭제) -->
+    <!-- <p style="color:var(--muted); font-size:12px;">DEBUG: categories/index.html LOADED | posts={{ site.posts | size }} | category_list={{ site.data.category_list | size }}</p> -->
+
+    {% assign posts_sorted = site.posts | sort: "date" | reverse %}
+
+    <!-- =========================
+       1) Chips (counts)
+       ========================= -->
     <div class="chips">
-        {% for item in site.data.category_list %}
-        {% assign slug = item.slug %}
+        {% for cat in site.data.category_list %}
+        {% assign slug = cat.slug | downcase %}
         {% assign cnt = 0 %}
 
-        {% for post in site.posts %}
+        {% for post in posts_sorted %}
         {% if post.categories and post.categories.size > 0 %}
         {% for c in post.categories %}
-        {% if c | slugify == slug %}
+        {% assign c_slug = c | slugify | downcase %}
+        {% if c_slug == slug %}
         {% assign cnt = cnt | plus: 1 %}
+        {% break %}
         {% endif %}
         {% endfor %}
         {% endif %}
         {% endfor %}
 
         <a class="chip" href="#{{ slug }}">
-            {{ item.title }} <span style="opacity:.75;">({{ cnt }})</span>
+            {{ cat.title }} <span style="opacity:.75;">({{ cnt }})</span>
         </a>
         {% endfor %}
     </div>
 
     <hr>
 
-    <!-- Sections -->
-    {% assign posts_sorted = site.posts | sort: "date" | reverse %}
-
-    {% for item in site.data.category_list %}
-    {% assign slug = item.slug %}
+    <!-- =========================
+       2) Sections (filtered posts)
+       ========================= -->
+    {% for cat in site.data.category_list %}
+    {% assign slug = cat.slug | downcase %}
 
     <div id="{{ slug }}" style="scroll-margin-top: 90px;"></div>
 
     <div class="section-title" style="margin-top: 18px;">
-        <h3>{{ item.title }}</h3>
+        <h3>{{ cat.title }}</h3>
         <span>{{ slug }}</span>
     </div>
 
@@ -55,8 +64,10 @@ permalink: /categories/
 
         {% if post.categories and post.categories.size > 0 %}
         {% for c in post.categories %}
-        {% if c | slugify | downcase == slug | downcase %}
+        {% assign c_slug = c | slugify | downcase %}
+        {% if c_slug == slug %}
         {% assign hit = true %}
+        {% break %}
         {% endif %}
         {% endfor %}
         {% endif %}
@@ -66,11 +77,11 @@ permalink: /categories/
 
         <a class="item" href="{{ post.url | relative_url }}">
             <div class="meta">
-                <span class="tag">{{ item.title }}</span>
+                <span class="tag">{{ cat.title }}</span>
                 <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
             </div>
 
-            <h4>{{ post.title }}</h4>
+            <h4 style="margin: 6px 0 10px;">{{ post.title }}</h4>
 
             <p>
                 {% if post.description %}
@@ -98,7 +109,6 @@ permalink: /categories/
             {% endif %}
         </a>
         {% endif %}
-
         {% endfor %}
     </div>
 
@@ -107,5 +117,4 @@ permalink: /categories/
     {% endunless %}
 
     {% endfor %}
-
 </div>
