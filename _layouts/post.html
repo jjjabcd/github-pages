@@ -1,212 +1,36 @@
-<!doctype html>
-<html lang="ko">
+---
+layout: shell
+---
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ page.title }} | {{ site.title }}</title>
-    <style>
-        :root {
-            --bg: #0b0f17;
-            --text: #e5e7eb;
-            --muted: #94a3b8;
-            --line: #1f2937;
-            --accent: #60a5fa;
-        }
+<div class="container">
+    <div class="card">
+        <div class="section-title">
+            <h3 style="text-align:center; width:100%;">{{ page.title }}</h3>
+            <span>Post</span>
+        </div>
 
-        body {
-            margin: 0;
-            background: var(--bg);
-            color: var(--text);
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
-            line-height: 1.75;
-        }
-
-        .wrap {
-            max-width: 920px;
-            margin: 0 auto;
-            padding: 28px 18px 56px;
-        }
-
-        a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        header {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
-            justify-content: space-between;
-            padding-bottom: 14px;
-            border-bottom: 1px solid var(--line);
-            margin-bottom: 18px;
-        }
-
-        .brand {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .brand small {
-            color: var(--muted);
-        }
-
-        .meta {
-            color: var(--muted);
-            font-size: 13px;
-            margin: 12px 0 18px;
-        }
-
-        article {
-            background: rgba(17, 24, 39, .65);
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            padding: 18px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, .18);
-        }
-
-        h1 {
-            margin: 0 0 8px;
-            font-size: 24px;
-        }
-
-        h2 {
-            margin-top: 22px;
-            font-size: 18px;
-        }
-
-        code {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        }
-
-        pre {
-            overflow: auto;
-            padding: 12px;
-            border-radius: 12px;
-            background: #0a1226;
-            border: 1px solid rgba(148, 163, 184, .18);
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid var(--line);
-            margin: 20px 0;
-        }
-
-        .pill {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            border: 1px solid rgba(96, 165, 250, .35);
-            background: rgba(96, 165, 250, .08);
-            font-size: 12px;
-            color: #bfdbfe;
-            margin-right: 6px;
-        }
-
-        /* =========================
-           Added: Image / Figure styles
-           ========================= */
-        article img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 12px 0;
-            border-radius: 12px;
-            border: 1px solid rgba(148, 163, 184, .18);
-            background: rgba(2, 6, 23, .35);
-        }
-
-        article figure {
-            margin: 14px 0;
-        }
-
-        article figure img {
-            margin: 0;
-        }
-
-        article figcaption {
-            margin-top: 8px;
-            color: var(--muted);
-            font-size: 12.5px;
-            line-height: 1.6;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .navpill {
-            display: inline-flex;
-            align-items: center;
-            padding: 6px 10px;
-            border-radius: 12px;
-            border: 1px solid rgba(148, 163, 184, .22);
-            background: rgba(2, 6, 23, .35);
-            color: var(--text);
-            font-size: 13px;
-            line-height: 1;
-            transition: border-color .15s ease,
-                background .15s ease,
-                transform .15s ease;
-        }
-
-        .navpill:hover {
-            border-color: rgba(96, 165, 250, .45);
-            background: rgba(96, 165, 250, .08);
-            transform: translateY(-1px);
-        }
-    </style>
-</head>
-
-<body>
-    <div class="wrap">
-        <header>
-            <div class="brand">
-                <a href="{{ site.baseurl }}/"><strong>{{ site.title }}</strong></a>
-                <small>{{ site.description }}</small>
+        <div class="meta" style="margin-top: 6px; margin-bottom: 12px;">
+            {% if page.categories and page.categories.size > 0 %}
+            <div style="margin-bottom: 6px;">
+                <strong>Category:</strong>
+                {% for c in page.categories %}
+                <span class="tag">{{ c }}</span>
+                {% endfor %}
             </div>
-            <nav>
-                <a class="navpill" href="{{ site.baseurl }}/">Home</a>
-                <a class="navpill" href="{{ site.baseurl }}/posts/">All Posts</a>
-            </nav>
-        </header>
+            {% endif %}
 
-        <article>
-            <h1 style="text-align: center;">{{ page.title }}</h1>
-            <div class="meta" style="margin-top: 6px;">
-
-                {% if page.categories and page.categories.size > 0 %}
-                <div style="margin-bottom: 4px;">
-                    <strong>Category:</strong>
-                    {% for c in page.categories %}
-                    <span class="pill">{{ c }}</span>
-                    {% endfor %}
-                </div>
-                {% endif %}
-
-                {% if page.tags and page.tags.size > 0 %}
-                <div>
-                    <strong>Topic:</strong>
-                    {% for t in page.tags %}
-                    <span class="pill">{{ t }}</span>
-                    {% endfor %}
-                </div>
-                {% endif %}
-
+            {% if page.tags and page.tags.size > 0 %}
+            <div>
+                <strong>Topic:</strong>
+                {% for t in page.tags %}
+                <span class="tag">{{ t }}</span>
+                {% endfor %}
             </div>
+            {% endif %}
+        </div>
 
+        <div class="content">
             {{ content }}
-        </article>
+        </div>
     </div>
-
-    <script src="{{ '/assets/js/external-links.js' | relative_url }}"></script>
-
-</body>
-
-</html>
+</div>
