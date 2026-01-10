@@ -9,26 +9,33 @@ layout: shell
             <span>Post</span>
         </div>
 
-        <div class="meta" style="margin-top: 6px; margin-bottom: 12px;">
+        <!-- Force line break between Category and Tags -->
+        <div class="meta"
+            style="margin-top: 6px; margin-bottom: 12px; flex-direction: column; align-items: flex-start;">
             {% if page.categories and page.categories.size > 0 %}
-            <div style="margin-bottom: 6px;">
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                 <strong>Category:</strong>
                 {% for c in page.categories %}
                 <span class="tag">{{ c }}</span>
                 {% endfor %}
             </div>
             {% endif %}
+
             {% if page.tags and page.tags.size > 0 %}
-            <div>
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                 <strong>Tags:</strong>
+
                 {% for t in page.tags %}
+                {% assign t_slug = t | slugify %}
                 {% assign display = t %}
+
                 {% for item in site.data.tag_list %}
-                {% if item.slug == t %}
+                {% if item.slug == t_slug %}
                 {% assign display = item.title %}
                 {% endif %}
                 {% endfor %}
-                <a class="tag" href="{{ '/tags/#' | append: t | relative_url }}">{{ display }}</a>
+
+                <a class="tag" href="{{ '/tags/#' | append: t_slug | relative_url }}">{{ display }}</a>
                 {% endfor %}
             </div>
             {% endif %}
