@@ -51,18 +51,17 @@ permalink: /categories/
 
     <div class="list">
         {% for post in posts_sorted %}
-        {% assign cat_tokens = "" %}
+        {% assign hit = false %}
 
         {% if post.categories and post.categories.size > 0 %}
         {% for c in post.categories %}
-        {% assign cat_tokens = cat_tokens | append: "|" | append: (c | slugify) %}
+        {% if c | slugify | downcase == slug | downcase %}
+        {% assign hit = true %}
+        {% endif %}
         {% endfor %}
-        {% assign cat_tokens = cat_tokens | append: "|" | downcase %}
         {% endif %}
 
-        {% assign needle = "|" | append: (slug | downcase) | append: "|" %}
-
-        {% if cat_tokens contains needle %}
+        {% if hit %}
         {% assign found_any = true %}
 
         <a class="item" href="{{ post.url | relative_url }}">
@@ -71,7 +70,7 @@ permalink: /categories/
                 <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
             </div>
 
-            <h4 style="margin: 6px 0 10px;">{{ post.title }}</h4>
+            <h4>{{ post.title }}</h4>
 
             <p>
                 {% if post.description %}
@@ -80,8 +79,26 @@ permalink: /categories/
                 {{ post.excerpt | strip_html | truncate: 80 }}
                 {% endif %}
             </p>
+
+            {% if post.tags and post.tags.size > 0 %}
+            <div class="meta" style="margin-top:14px">
+                {% for t in post.tags %}
+                {% assign t_slug = t | slugify %}
+                {% assign t_display = t %}
+
+                {% for ti in site.data.tag_list %}
+                {% if ti.slug == t_slug %}
+                {% assign t_display = ti.title %}
+                {% endif %}
+                {% endfor %}
+
+                <span class="tag">#{{ t_display }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
         </a>
         {% endif %}
+
         {% endfor %}
     </div>
 
@@ -90,4 +107,5 @@ permalink: /categories/
     {% endunless %}
 
     {% endfor %}
+
 </div>
