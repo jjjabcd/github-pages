@@ -1,6 +1,6 @@
 ---
-layout: topic
+layout: tag
 title: "Multi-Modality"
-permalink: /topic/multi-modality/
+permalink: /tag/multi-modality/
 topic_key: multi-modality
 ---

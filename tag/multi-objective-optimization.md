@@ -1,6 +1,6 @@
 ---
-layout: topic
+layout: tag
 title: "Multi-Objective Optimization"
-permalink: /topic/multi-objective-optimization/
+permalink: /tag/multi-objective-optimization/
 topic_key: multi-objective-optimization
 ---

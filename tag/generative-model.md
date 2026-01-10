@@ -1,6 +1,6 @@
 ---
-layout: topic
+layout: tag
 title: "Generative Model"
-permalink: /topic/generative-model/
+permalink: /tag/generative-model/
 topic_key: generative-model
 ---

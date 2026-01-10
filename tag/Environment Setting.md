@@ -1,6 +1,6 @@
 ---
-layout: topic
+layout: tag
 title: "Environment Setting"
-permalink: /topic/environment/
+permalink: /tag/environment/
 topic_key: environment
 ---

@@ -9,3 +9,8 @@ exclude:
   - .vscode/
   - .gitignore
   - README.md
+
+collections:
+  tag:
+    output: true
+    permalink: /tag/:name/

@@ -18,12 +18,11 @@ layout: shell
                 {% endfor %}
             </div>
             {% endif %}
-
             {% if page.tags and page.tags.size > 0 %}
             <div>
-                <strong>Topic:</strong>
+                <strong>Tags:</strong>
                 {% for t in page.tags %}
-                <span class="tag">{{ t }}</span>
+                <a class="tag" href="{{ '/tags/#' | append: t | relative_url }}">{{ t }}</a>
                 {% endfor %}
             </div>
             {% endif %}

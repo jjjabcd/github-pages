@@ -1,6 +1,6 @@
 ---
-layout: topic
+layout: tag
 title: "Cheminformatics"
-permalink: /topic/cheminformatics/
+permalink: /tag/cheminformatics/
 topic_key: cheminformatics
 ---

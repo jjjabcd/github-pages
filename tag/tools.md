@@ -1,6 +1,6 @@
 ---
-layout: topic
+layout: tag
 title: "Tools"
-permalink: /topic/tools/
+permalink: /tag/tools/
 topic_key: tools
 ---

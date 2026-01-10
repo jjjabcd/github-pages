@@ -1,0 +1,37 @@
+# Display title (title) and URL anchor slug (slug)
+# Slug rule: lowercase + kebab-case, remove special chars
+
+- title: Cheminformatics
+  slug: cheminformatics
+- title: Generative Model
+  slug: generative-model
+- title: Multi-objective Optimization
+  slug: multi-objective-optimization
+
+- title: Ubuntu
+  slug: ubuntu
+- title: Miniconda
+  slug: miniconda
+- title: Jupyter
+  slug: jupyter
+- title: Environment
+  slug: environment
+
+- title: ML/DL
+  slug: ml-dl
+- title: Reinforcement Learning
+  slug: reinforcement-learning
+
+- title: Molecular Representation
+  slug: molecular-representation
+- title: Molecular Property
+  slug: molecular-property
+
+- title: GitHub
+  slug: github
+- title: PyTorch
+  slug: pytorch
+- title: RDKit
+  slug: rdkit
+- title: DeepChem
+  slug: deepchem
