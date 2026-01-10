@@ -13,7 +13,7 @@ permalink: /tags/
     <!-- 1) Tag chips (auto from _data/tag_list.yml) -->
     <div class="chips">
         {% for item in site.data.tag_list %}
-        <a class="chip" href="#{{ item.slug }}">{{ item.slug }}</a>
+        <a class="chip" href="#{{ item.slug }}">{{ item.title }}</a>
         {% endfor %}
     </div>
 
@@ -26,7 +26,7 @@ permalink: /tags/
 
     <div class="section-title" style="margin-top: 18px;">
         <h3>{{ item.title }}</h3>
-        <span>#{{ slug }}</span>
+        <span>#{{ item.slug }}</span>
     </div>
 
     {% assign posts_for_tag = site.posts | where_exp: "p", "p.tags contains slug" | sort: "date" | reverse %}

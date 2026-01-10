@@ -22,7 +22,13 @@ layout: shell
             <div>
                 <strong>Tags:</strong>
                 {% for t in page.tags %}
-                <a class="tag" href="{{ '/tags/#' | append: t | relative_url }}">{{ t }}</a>
+                {% assign display = t %}
+                {% for item in site.data.tag_list %}
+                {% if item.slug == t %}
+                {% assign display = item.title %}
+                {% endif %}
+                {% endfor %}
+                <a class="tag" href="{{ '/tags/#' | append: t | relative_url }}">{{ display }}</a>
                 {% endfor %}
             </div>
             {% endif %}
