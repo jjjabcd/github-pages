@@ -10,7 +10,6 @@ permalink: /categories/
         <span>post counts</span>
     </div>
 
-    <!-- Chips with counts -->
     <div class="chips">
         {% for item in site.data.category_list %}
         {% assign slug = item.slug %}
@@ -32,7 +31,6 @@ permalink: /categories/
 
     <hr>
 
-    <!-- Category sections -->
     {% for item in site.data.category_list %}
     {% assign slug = item.slug %}
 
@@ -82,6 +80,5 @@ permalink: /categories/
     {% unless found_any %}
     <p style="color: var(--muted); margin: 0 0 10px;">No posts found.</p>
     {% endunless %}
-
     {% endfor %}
 </div>
