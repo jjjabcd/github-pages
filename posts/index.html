@@ -21,27 +21,28 @@ permalink: /posts/
     <div class="list">
         {% for post in items %}
         <a class="item" href="{{ post.url | relative_url }}">
+
+            <!-- 1) Category + Date (한 줄) -->
             <div class="meta">
                 {% if post.categories and post.categories.size > 0 %}
                 {% assign c0_slug = post.categories[0] | slugify %}
                 {% assign c0_display = post.categories[0] %}
-
-                {% for item in site.data.category_list %}
-                {% if item.slug == c0_slug %}
-                {% assign c0_display = item.title %}
+                {% for ci in site.data.category_list %}
+                {% if ci.slug == c0_slug %}
+                {% assign c0_display = ci.title %}
                 {% endif %}
                 {% endfor %}
-
-                <a class="tag" href="{{ '/categories/#' | append: c0_slug | relative_url }}">{{ c0_display }}</a>
+                <span class="tag">{{ c0_display }}</span>
                 {% else %}
                 <span class="tag">post</span>
                 {% endif %}
-
                 <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
             </div>
 
-            <h4>{{ post.title }}</h4>
+            <!-- 2) Title (줄바꿈) -->
+            <h4 style="margin-top:10px;">{{ post.title }}</h4>
 
+            <!-- 3) Description -->
             <p>
                 {% if post.description %}
                 {{ post.description }}
@@ -50,18 +51,17 @@ permalink: /posts/
                 {% endif %}
             </p>
 
+            <!-- 4) Tags only (title로 표시) -->
             {% if post.tags and post.tags.size > 0 %}
             <div class="meta" style="margin-top:14px">
                 {% for t in post.tags %}
                 {% assign t_slug = t | slugify %}
                 {% assign t_display = t %}
-
-                {% for item in site.data.tag_list %}
-                {% if item.slug == t_slug %}
-                {% assign t_display = item.title %}
+                {% for ti in site.data.tag_list %}
+                {% if ti.slug == t_slug %}
+                {% assign t_display = ti.title %}
                 {% endif %}
                 {% endfor %}
-
                 <span class="tag">#{{ t_display }}</span>
                 {% endfor %}
             </div>
@@ -69,5 +69,6 @@ permalink: /posts/
 
         </a>
         {% endfor %}
+
     </div>
 </div>
