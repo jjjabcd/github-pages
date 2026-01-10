@@ -23,7 +23,16 @@ permalink: /posts/
         <a class="item" href="{{ post.url | relative_url }}">
             <div class="meta">
                 {% if post.categories and post.categories.size > 0 %}
-                <span class="tag">{{ post.categories[0] }}</span>
+                {% assign c0 = post.categories[0] | slugify %}
+                {% assign c_display = post.categories[0] %}
+
+                {% for item in site.data.category_list %}
+                {% if item.slug == c0 %}
+                {% assign c_display = item.title %}
+                {% endif %}
+                {% endfor %}
+
+                <span class="tag">{{ c_display }}</span>
                 {% else %}
                 <span class="tag">post</span>
                 {% endif %}
@@ -40,13 +49,23 @@ permalink: /posts/
                 {% endif %}
             </p>
 
-            {% if post.tags %}
+            {% if post.tags and post.tags.size > 0 %}
             <div class="meta" style="margin-top:14px">
                 {% for t in post.tags %}
-                <span class="tag">#{{ t }}</span>
+                {% assign t_slug = t | slugify %}
+                {% assign t_display = t %}
+
+                {% for item in site.data.tag_list %}
+                {% if item.slug == t_slug %}
+                {% assign t_display = item.title %}
+                {% endif %}
+                {% endfor %}
+
+                <span class="tag">#{{ t_display }}</span>
                 {% endfor %}
             </div>
             {% endif %}
+
         </a>
         {% endfor %}
     </div>
