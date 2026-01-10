@@ -1,12 +1,10 @@
 ---
 layout: post
-title: "SMILES 표기법"
-date: 2026-01-05
-categories: [Cheminformatics]
+title: "리눅스 명령어 정리"
+date: 2025-03-31
+categories: [Linux]
 tags:
-  - ML/DL
-  - Generative Model
-  - Reinforcement Learning
+  - ubuntu
 description: "Test post for Linux category."
 ---
 한두 줄 테스트 내용입니다.

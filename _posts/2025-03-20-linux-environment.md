@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "environment.yml & requirements.txt 사용법"
-date: 2026-01-05
-categories: [AI]
+date: 2025-03-20
+categories: [Linux]
 tags:
-  - ML/DL
-  - Generative Model
-  - Reinforcement Learning
+  - ubuntu
+  - miniconda
+  - environment
 description: "Test post for Linux category."
 ---
 한두 줄 테스트 내용입니다.

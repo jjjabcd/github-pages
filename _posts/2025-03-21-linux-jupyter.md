@@ -1,12 +1,13 @@
 ---
 layout: post
 title: "SSH 접속 후 jupyter 사용"
-date: 2026-01-05
-categories: [AI]
+date: 2025-03-21
+categories: [Linux]
 tags:
-  - ML/DL
-  - Generative Model
-  - Reinforcement Learning
+  - ubuntu
+  - miniconda
+  - environment
+  - jupyter
 description: "Test post for Linux category."
 ---
 한두 줄 테스트 내용입니다.

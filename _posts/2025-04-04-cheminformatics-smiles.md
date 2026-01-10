@@ -1,12 +1,11 @@
 ---
 layout: post
 title: "SMILES 표기법"
-date: 2026-01-05
+date: 2025-04-04
 categories: [Cheminformatics]
 tags:
-  - ML/DL
-  - Generative Model
-  - Reinforcement Learning
+  - cheminformatics
+  - molecular-representation
 description: "Test post for Linux category."
 ---
 한두 줄 테스트 내용입니다.
