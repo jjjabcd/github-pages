@@ -22,7 +22,11 @@ permalink: /categories/
         {% for post in site.posts %}
         {% if post.categories and post.categories.size > 0 %}
         {% for c in post.categories %}
-        {% if c | slugify == slug %}
+        {% assign c_s = c | slugify | downcase %}
+        {% assign s_s = slug | downcase %}
+        {% if c_s == s_s %}
+        {% assign cnt = cnt | plus: 1 %}
+        {% endif %}
         {% assign cnt = cnt | plus: 1 %}
         {% endif %}
         {% endfor %}
@@ -70,9 +74,10 @@ permalink: /categories/
         {% assign cat_tokens = cat_tokens | append: "|" | append: (c | slugify) %}
         {% endfor %}
         {% assign cat_tokens = cat_tokens | append: "|" %}
+        {% assign cat_tokens = cat_tokens | downcase %}
         {% endif %}
 
-        {% assign needle = "|" | append: slug | append: "|" %}
+        {% assign needle = "|" | append: (slug | downcase) | append: "|" %}
 
         {% if cat_tokens contains needle %}
         {% assign found_any = true %}

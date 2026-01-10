@@ -398,16 +398,28 @@ layout: none
                     {% if post.categories and post.categories.size > 0 %}
                     {% for c in post.categories %}
                     {% assign c_slug = c | slugify %}
-
                     {% if c_slug == c1 %}{% assign n1 = n1 | plus: 1 %}{% endif %}
                     {% if c_slug == c2 %}{% assign n2 = n2 | plus: 1 %}{% endif %}
                     {% if c_slug == c3 %}{% assign n3 = n3 | plus: 1 %}{% endif %}
                     {% if c_slug == c4 %}{% assign n4 = n4 | plus: 1 %}{% endif %}
                     {% if c_slug == c5 %}{% assign n5 = n5 | plus: 1 %}{% endif %}
-
                     {% endfor %}
                     {% endif %}
                     {% endfor %}
+
+                    {%- assign t1 = c1 -%}
+                    {%- assign t2 = c2 -%}
+                    {%- assign t3 = c3 -%}
+                    {%- assign t4 = c4 -%}
+                    {%- assign t5 = c5 -%}
+
+                    {%- for item in site.data.category_list -%}
+                    {%- if item.slug == c1 -%}{%- assign t1 = item.title -%}{%- endif -%}
+                    {%- if item.slug == c2 -%}{%- assign t2 = item.title -%}{%- endif -%}
+                    {%- if item.slug == c3 -%}{%- assign t3 = item.title -%}{%- endif -%}
+                    {%- if item.slug == c4 -%}{%- assign t4 = item.title -%}{%- endif -%}
+                    {%- if item.slug == c5 -%}{%- assign t5 = item.title -%}{%- endif -%}
+                    {%- endfor -%}
 
                     <a class="cat" href="{{ '/categories/#' | append: c1 | relative_url }}">
                         <h4>{{ t1 }} <span class="count">({{ n1 }})</span></h4>
@@ -434,6 +446,7 @@ layout: none
                         <p>GitHub, PyTorch, RDKit, DeepChem</p>
                     </a>
                 </div>
+
 
 
                 <div class="section-title" style="margin-top:16px">
