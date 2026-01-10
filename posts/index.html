@@ -23,19 +23,20 @@ permalink: /posts/
         <a class="item" href="{{ post.url | relative_url }}">
             <div class="meta">
                 {% if post.categories and post.categories.size > 0 %}
-                {% assign c0 = post.categories[0] | slugify %}
-                {% assign c_display = post.categories[0] %}
+                {% assign c0_slug = post.categories[0] | slugify %}
+                {% assign c0_display = post.categories[0] %}
 
                 {% for item in site.data.category_list %}
-                {% if item.slug == c0 %}
-                {% assign c_display = item.title %}
+                {% if item.slug == c0_slug %}
+                {% assign c0_display = item.title %}
                 {% endif %}
                 {% endfor %}
 
-                <span class="tag">{{ c_display }}</span>
+                <a class="tag" href="{{ '/categories/#' | append: c0_slug | relative_url }}">{{ c0_display }}</a>
                 {% else %}
                 <span class="tag">post</span>
                 {% endif %}
+
                 <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
             </div>
 

@@ -1,0 +1,80 @@
+---
+layout: shell
+title: "Categories"
+permalink: /categories/
+---
+
+<div class="card">
+    <div class="section-title">
+        <h3>Categories</h3>
+        <span>browse</span>
+    </div>
+
+    <!-- Category chips -->
+    <div class="chips">
+        {% for item in site.data.category_list %}
+        <a class="chip" href="#{{ item.slug }}">{{ item.title }}</a>
+        {% endfor %}
+    </div>
+
+    <hr>
+
+    <!-- Category sections -->
+    {% for item in site.data.category_list %}
+    {% assign slug = item.slug %}
+
+    <div id="{{ slug }}" style="scroll-margin-top: 90px;"></div>
+
+    <div class="section-title" style="margin-top: 18px;">
+        <h3>{{ item.title }}</h3>
+        <span>{{ slug }}</span>
+    </div>
+
+    {%- assign posts_for_cat = site.categories[slug] -%}
+    {% if posts_for_cat == nil %}
+    {% assign posts_for_cat = "" | split: "" %}
+    {% endif %}
+
+    {% assign posts_for_cat = posts_for_cat | sort: "date" | reverse %}
+
+    {% if posts_for_cat.size == 0 %}
+    <p style="color: var(--muted); margin: 0 0 10px;">No posts found.</p>
+    {% endif %}
+
+    <div class="list">
+        {% for post in posts_for_cat %}
+        <a class="item" href="{{ post.url | relative_url }}">
+            <div class="meta">
+                <span class="tag">{{ item.title }}</span>
+                <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
+            </div>
+
+            <h4>{{ post.title }}</h4>
+
+            <p>
+                {% if post.description %}
+                {{ post.description }}
+                {% else %}
+                {{ post.excerpt | strip_html | truncate: 80 }}
+                {% endif %}
+            </p>
+
+            {% if post.tags and post.tags.size > 0 %}
+            <div class="meta" style="margin-top:14px">
+                {% for t in post.tags %}
+                {% assign t_slug = t | slugify %}
+                {% assign t_display = t %}
+                {% for ti in site.data.tag_list %}
+                {% if ti.slug == t_slug %}
+                {% assign t_display = ti.title %}
+                {% endif %}
+                {% endfor %}
+                <span class="tag">#{{ t_display }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>

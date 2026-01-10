@@ -15,18 +15,22 @@ layout: shell
             {% if page.categories and page.categories.size > 0 %}
             <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                 <strong>Category:</strong>
+
                 {% for c in page.categories %}
                 {% assign c_slug = c | slugify %}
                 {% assign c_display = c %}
+
                 {% for item in site.data.category_list %}
                 {% if item.slug == c_slug %}
                 {% assign c_display = item.title %}
                 {% endif %}
                 {% endfor %}
-                <span class="tag">{{ c_display }}</span>
+
+                <a class="tag" href="{{ '/categories/#' | append: c_slug | relative_url }}">{{ c_display }}</a>
                 {% endfor %}
             </div>
             {% endif %}
+
 
             {% if page.tags and page.tags.size > 0 %}
             <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">

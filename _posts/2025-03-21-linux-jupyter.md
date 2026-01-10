@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Ubuntu에서 Miniconda 설치"
-date: 2025-03-18
-categories: [Linux]
+title: "SSH 접속 후 jupyter 사용"
+date: 2026-01-05
+categories: [AI]
 tags:
   - ML/DL
   - Generative Model
