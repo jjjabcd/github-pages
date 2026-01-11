@@ -1,0 +1,52 @@
+{% comment %}
+Args:
+page.categories (Array) or page.category (String)
+Returns:
+Renders up to 5 recent posts in the same category as the current page
+Notes:
+- Excludes the current page.url
+- Uses the first category when multiple categories exist
+{% endcomment %}
+
+{% assign current_cat = nil %}
+
+{% if page.categories and page.categories.size > 0 %}
+{% assign current_cat = page.categories[0] %}
+{% elsif page.category %}
+{% assign current_cat = page.category %}
+{% endif %}
+
+{% if current_cat %}
+{% assign candidates = site.posts | where_exp: "p", "p.url != page.url" %}
+{% assign related = candidates | where_exp: "p", "p.categories contains current_cat" | sort: "date" | reverse %}
+
+{% if related and related.size > 0 %}
+<section class="related-section">
+    <div class="related-header">
+        <span class="related-dot" aria-hidden="true"></span>
+        <h3 class="related-title">Related Posts</h3>
+        <span class="related-subtitle">in {{ current_cat }}</span>
+    </div>
+
+    <div class="related-grid">
+        {% for p in related limit: 5 %}
+        <a class="related-card" href="{{ p.url | relative_url }}">
+            <div class="related-card-body">
+                <div class="related-card-title">{{ p.title }}</div>
+
+                {% if p.excerpt %}
+                <div class="related-card-excerpt">
+                    {{ p.excerpt | strip_html | strip_newlines }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="related-card-date">
+                {{ p.date | date: "%Y년 %-m월 %-d일" }}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+{% endif %}
