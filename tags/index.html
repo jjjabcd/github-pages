@@ -59,8 +59,14 @@ permalink: /tags/
 
             {% if post.tags and post.tags.size > 0 %}
             <div class="meta" style="margin-top:14px">
-                {% for t in post.tags %}
-                <span class="tag">#{{ t }}</span>
+                {% for t_slug in post.tags %}
+                {% assign t_title = t_slug %}
+                {% for t_item in site.data.tag_list %}
+                {% if t_item.slug == t_slug %}
+                {% assign t_title = t_item.title %}
+                {% endif %}
+                {% endfor %}
+                <a class="tag" href="{{ '/tags/#' | append: t_slug | relative_url }}">{{ t_title }}</a>
                 {% endfor %}
             </div>
             {% endif %}
