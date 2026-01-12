@@ -40,10 +40,18 @@ permalink: /tags/
         <a class="item" href="{{ post.url | relative_url }}">
             <div class="meta">
                 {% if post.categories and post.categories.size > 0 %}
-                <span class="tag">{{ post.categories[0] }}</span>
+                {% assign c_slug = post.categories[0] %}
+                {% assign c_title = c_slug %}
+                {% for item2 in site.data.tag_list %}
+                {% if item2.slug == c_slug %}
+                {% assign c_title = item2.title %}
+                {% endif %}
+                {% endfor %}
+                <span class="tag">{{ c_title }}</span>
                 {% else %}
                 <span class="tag">post</span>
                 {% endif %}
+
                 <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
             </div>
 
@@ -59,14 +67,14 @@ permalink: /tags/
 
             {% if post.tags and post.tags.size > 0 %}
             <div class="meta" style="margin-top:14px">
-                {% for t_slug in post.tags %}
-                {% assign t_title = t_slug %}
-                {% for t_item in site.data.tag_list %}
-                {% if t_item.slug == t_slug %}
-                {% assign t_title = t_item.title %}
+                {% for t in post.tags %}
+                {% assign t_title = t %}
+                {% for item2 in site.data.tag_list %}
+                {% if item2.slug == t %}
+                {% assign t_title = item2.title %}
                 {% endif %}
                 {% endfor %}
-                <a class="tag" href="{{ '/tags/#' | append: t_slug | relative_url }}">{{ t_title }}</a>
+                <span class="tag">{{ t_title }}</span>
                 {% endfor %}
             </div>
             {% endif %}
