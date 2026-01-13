@@ -314,6 +314,30 @@ layout: none
             font-size: 12px;
             color: var(--muted);
         }
+
+        /* =========================
+        Code block dark override
+        ========================= */
+        pre,
+        .highlight {
+            background: #0d1117;
+            /* GitHub dark background */
+            border: 1px solid #30363d;
+            border-radius: 12px;
+        }
+
+        pre code {
+            background: transparent;
+            color: #c9d1d9;
+        }
+
+        /* inline code */
+        :not(pre)>code {
+            background: rgba(110, 118, 129, .2);
+            padding: 2px 6px;
+            border-radius: 6px;
+            color: #e6edf3;
+        }
     </style>
     <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
 </head>
