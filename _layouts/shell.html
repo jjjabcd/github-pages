@@ -211,8 +211,30 @@ layout: none
         }
 
         /* =========================
-     Related Posts (AUTO)
-     ========================= */
+        Code block (Rouge)
+        ========================= */
+        pre {
+            margin: 12px 0;
+            padding: 14px 16px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: rgba(2, 6, 23, .55);
+            overflow: auto;
+        }
+
+        pre code {
+            background: transparent;
+        }
+
+        /* Rouge wrapper class (theme dependent but commonly used) */
+        .highlight {
+            border-radius: 14px;
+        }
+
+
+        /* =========================
+        Related Posts (AUTO)
+        ========================= */
         .related-section {
             margin-top: 48px;
             padding-top: 20px;
@@ -293,6 +315,38 @@ layout: none
             color: var(--muted);
         }
     </style>
+
+    /* =========================
+    Reference mention cards
+    ========================= */
+    .references a {
+    display: block;
+    padding: 12px 14px;
+    margin: 10px 0;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(17, 24, 39, .55);
+    box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    color: var(--text);
+    word-break: break-all;
+    }
+
+    .references a:hover {
+    border-color: rgba(96, 165, 250, .5);
+    transform: translateY(-1px);
+    }
+
+    /* optional: show nicer label */
+    .references a::before {
+    content: "Reference";
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    }
+
+
+
     <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
 </head>
 
