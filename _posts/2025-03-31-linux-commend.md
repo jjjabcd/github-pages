@@ -115,11 +115,10 @@ clear  # 터미널 로그를 지우고 화면을 초기화
 
 ### 참고 자료
 
-<div class="references">
 
-https://www.hanbit.co.kr/channel/category/category_view.html?cms_code=CMS6390061632
+ - [[한빛 채널: 카테고리]](https://www.hanbit.co.kr/channel/category/category_view.html?cms_code=CMS6390061632)
 
-https://techplay.blog/%EB%A6%AC%EB%88%85%EC%8A%A4%EC%97%90%EC%84%9C-%EC%9E%90%EC%A3%BC%EC%82%AC%EC%9A%A9%EB%90%98%EA%B1%B0%EB%82%98-%EA%BC%AD-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%98%EB%8A%94-%EB%AA%85%EB%A0%B9%EC%96%B4/
+ - [[TechPlay: Linux 명령어]](https://techplay.blog/%EB%A6%AC%EB%88%85%EC%8A%A4%EC%97%90%EC%84%9C-%EC%9E%90%EC%A3%BC%EC%82%AC%EC%9A%A9%EB%90%98%EA%B1%B0%EB%82%98-%EA%BC%AD-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%98%EB%8A%94-%EB%AA%85%EB%A0%B9%EC%96%B4/)
 
 </div>
 
