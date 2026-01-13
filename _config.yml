@@ -4,6 +4,12 @@ url: "https://jjiabcd.github.io"
 baseurl: "/github-pages"
 markdown: kramdown
 
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+highlighter: rouge
+
 exclude:
   - workspace/
   - .vscode/
