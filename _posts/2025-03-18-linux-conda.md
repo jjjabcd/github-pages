@@ -79,11 +79,11 @@ conda create -n myenv python=3.9
 
 위 명령어를 실행하면 다음과 비슷한 화면이 나온다.
 
-![스크린샷 2025-03-18 17.46.11.png](assets\2025-03-18-linux-conda\fig1.png)
+![fig1.png](assets/2025-03-18-linux-conda/fig1.png)
 
 설치되는 패키지들을 확인하고, y를 누르면 설치가 완료된다.
 
-![스크린샷 2025-03-18 17.46.46.png](assets\2025-03-18-linux-conda\fig2.png)
+![fig2.png](assets/2025-03-18-linux-conda/fig2.png)
 
 설치가 완료되면 다음과 같은 안내 문구가 뜨게 된다.
 
@@ -93,20 +93,23 @@ y를 누르지 않아도 되는 상황에선 다음과 `-y`옵션을 사용해 �
 conda create -n test python -y
 ```
 
+`-n` 옵션은 name의 약자로 가상환경의 이름으로 사용할 이름을 입력할 수 있음
+
+
 ### 생성한 환경 활성화
 
 ```bash
-conda activate myenv
+conda activate test
 ```
 
-활성화 한 후, (base)가 (myenv) 혹은 가상환경 이름으로 바뀌었는지 꼭 확인해야됩니다.
+활성화 한 후, (base)가 (test) 혹은 가상환경 이름으로 바뀌었는지 꼭 확인해야됩니다.
 
-![스크린샷 2025-03-18 17.49.01.png](assets\2025-03-18-linux-conda\fig3.png)
+![fig3.png](assets\2025-03-18-linux-conda\fig3.png)
 
 
 ### 다음글
 
-[Conda 가상환경에 라이브러리 설치](Conda%20%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD%EC%97%90%20%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC%20%EC%84%A4%EC%B9%98%201baee3c1d96b80f9bce3e1ee86f18757.md) 
+[Conda 가상환경에 라이브러리 설치](https://jjjabcd.github.io/github-pages/linux/2025/03/19/linux-conda-environment.html) 
 
 ### [참고자료]
 
@@ -115,14 +118,3 @@ conda activate myenv
 https://soundprovider.tistory.com/entry/Miniconda-Ubuntu%EC%97%90-Miniconda-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
 
 https://velog.io/@cosmos42/Ubuntu-22.04-miniconda-install-in-Ternimal
-
----
-
-[제목 없음](Ubuntu%EC%97%90%EC%84%9C%20Miniconda%20%EC%84%A4%EC%B9%98/%EC%A0%9C%EB%AA%A9%20%EC%97%86%EC%9D%8C%201b4ee3c1d96b8062a1a9ed9a40b26611.csv)
-
----
-
-<aside>
-⚙ 　｜　[Main Page](https://www.notion.so/Jin-s-Study-194ee3c1d96b80a2b0cce212cc8d597e?pvs=21)　｜　[Category](https://www.notion.so/194ee3c1d96b8190b180c83ff97a5f40?pvs=21)　｜　 [Tags](https://www.notion.so/194ee3c1d96b81e98e40ce44821c019d?pvs=21)　｜　[About Me](https://www.notion.so/About-Me-194ee3c1d96b81878ad7c01e4598e60e?pvs=21)　｜　[Contact](https://www.notion.so/Contact-194ee3c1d96b815fbf95f262b2ade489?pvs=21)　｜
-
-</aside>
