@@ -61,8 +61,6 @@ source ~/.bashrc
 
 ## Miniconda 사용 시작하기
 
----
-
 설치가 완료 및 터미널 재부팅까지 했다면, Conda 환경을 활성화하고 기본적인 패키지 설치 등을 진행할 수 있습니다.
 
 ### Conda 버전 확인
@@ -71,50 +69,12 @@ source ~/.bashrc
 conda --version
 ```
 
-### 새로운 Conda 환경 생성
-
-```bash
-conda create -n myenv python=3.9
-```
-
-위 명령어를 실행하면 다음과 비슷한 화면이 나온다.
-
-![fig1.png](assets/2025-03-18-linux-conda/fig1.png)
-
-설치되는 패키지들을 확인하고, y를 누르면 설치가 완료된다.
-
-![fig2.png](assets/2025-03-18-linux-conda/fig2.png)
-
-설치가 완료되면 다음과 같은 안내 문구가 뜨게 된다.
-
-y를 누르지 않아도 되는 상황에선 다음과 `-y`옵션을 사용해 바로 설치 되게 할 수 있다.
-
-```bash
-conda create -n test python -y
-```
-
-`-n` 옵션은 name의 약자로 가상환경의 이름으로 사용할 이름을 입력할 수 있음
-
-
-### 생성한 환경 활성화
-
-```bash
-conda activate test
-```
-
-활성화 한 후, (base)가 (test) 혹은 가상환경 이름으로 바뀌었는지 꼭 확인해야됩니다.
-
-![fig3.png](assets\2025-03-18-linux-conda\fig3.png)
-
-
-### 다음글
-
-[Conda 가상환경에 라이브러리 설치](https://jjjabcd.github.io/github-pages/linux/2025/03/19/linux-conda-environment.html) 
-
-### [참고자료]
+다음글은 설치된 미니콘다를 사용하여 가상환경을 생성하고, 생성된 가상환경에 개발 또는 연구에 필요한 패키지들을 설치하는 과정을 소개할 예정이다.
 
 ---
 
-https://soundprovider.tistory.com/entry/Miniconda-Ubuntu%EC%97%90-Miniconda-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
+### [참고자료]
 
-https://velog.io/@cosmos42/Ubuntu-22.04-miniconda-install-in-Ternimal
+- [[Miniconda] Ubuntu에 Miniconda 설치하기](https://soundprovider.tistory.com/entry/Miniconda-Ubuntu%EC%97%90-Miniconda-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0)
+
+- [Ubuntu 22.04에 miniconda 설치 in Ternimal](https://velog.io/@cosmos42/Ubuntu-22.04-miniconda-install-in-Ternimal)
