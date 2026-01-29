@@ -32,25 +32,24 @@ description: "Test post for Linux category."
 
 ## 사람이 읽기 쉬운 방식 (Human-readable) 예
 
-### **Name**
+### Name
 
 - Propanal
 
-### **Kekulé**
+### Kekulé
 
-![image.png](SMILES%20%ED%91%9C%EA%B8%B0%EB%B2%95/image.png)
+![image.png](../assets/2025-04-04-cheminformatics-smiles/fig1.png)
 
-### **Condensed Formula**
+### Condensed Formula
 
 - $CH_3CH_2CHO$
 
-### **Bond-line**
+### Bond-line
 
-![image.png](SMILES%20%ED%91%9C%EA%B8%B0%EB%B2%95/image%201.png)
+![image.png](../assets/2025-04-04-cheminformatics-smiles/fig2.png)
 
----
 
-## 컴퓨터에서 사용하는 방식 (**Computer-readable**) 예
+## 컴퓨터에서 사용하는 방식 (Computer-readable) 예
 
 - SMILES(Simplified Molecular Input Line Entropy System)
 
@@ -58,7 +57,6 @@ description: "Test post for Linux category."
 
 SMILES는 분자구조를 string으로 표현하는 표기법, 분자 구조의 **,atom, bond, ring, aromaticity, branch** 등을 특정 규칙에 따라 문자열로 변환합니다. 특정 시작 atom을 정하고, 분자구조를 DFS 알고리즘을 통해 SMILES string으로 반환한다.
 
----
 
 ### SMILES 표기법의 장점
 
@@ -73,77 +71,37 @@ SMILES는 분자구조를 string으로 표현하는 표기법, 분자 구조의 
 2. 서로 분자구조가 비슷하더라도 SMILES string 자체는 매우 달라보일 수 있음
 3. 시작 atom 또는 읽는 방향에 따라 같은 분자구조여도 SMILES string은 다양하게 나올 수 있음 
 
-| **Name** | **Descriptions** | **Examples** |
-| --- | --- | --- |
-| Atoms | •화학 원소의 표준 약어로 표현
-•전하 및 수소를 보여주기 위해 대괄호 사용 | •B, C, N, O, F, P, S, Cl, Br, and I
-•[Au], [Ag], [Cu]
-•[Cl-], [OH-], [NH4+] |
-| Bonds | •단일 결합 : “-”
-•이중, 삼중, 사중 결합 : “=“, “#”, “$”
-•결합되지 않은 표현 : “.” | •CCC
-•O=C=O
-•C#N
-•[Ga+]$[As-]
-•[Na+].[Cl-] |
-| Rings | •고리 결합 표현 : 두 개의 일치하는 정수 라벨을 사용
-•고리 숫자를 순서대로 사용할 필요 X
-•고리가 닫힌 후 숫자를 재사용하는 것은 가능 | •C1CCCCC1
-•C1CCCC2C1CCCC2
-•C1CCCCC1C2CCCCC2
-•C1CCCCC1C1CCCCC1
-•C1=CC1
-•C=1CC1 |
-| Aromaticity | •방향족 고리 : “:” 또는 소문자를 사용하여 여러 형태로 사용 가능 | •C1=CC=CC=C1
-•C:1:C:C:C:C:C1
-•c1ccccc1 |
-| Branching | •괄호를 사용하여 설명
-•어떤 순서로든 작성 가능 | •CCC(=O)O
-•FC(Br)(Cl)F
-•BrC(F)(F)Cl
-•C(F)(Cl)(F)Br |
-
----
+| Name | Descriptions | Examples |
+|------|--------------|----------|
+| Atoms | 화학 원소의 표준 약어로 표현<br>전하 및 수소를 보여주기 위해 대괄호 사용 | B, C, N, O, F, P, S, Cl, Br, I<br>[Au], [Ag], [Cu]<br>[Cl-], [OH-], [NH4+] |
+| Bonds | 단일 결합: `-`<br>이중, 삼중, 사중 결합: `=`, `#`, `$`<br>결합되지 않은 표현: `.` | CCC<br>O=C=O<br>C#N<br>[Ga+]$[As-]<br>[Na+].[Cl-] |
+| Rings | 고리 결합 표현: 두 개의 일치하는 정수 라벨 사용<br>고리 숫자는 순서대로 사용할 필요 없음<br>고리 닫힘 이후 숫자 재사용 가능 | C1CCCCC1<br>C1CCCC2C1CCCC2<br>C1CCCCC1C2CCCCC2<br>C1CCCCC1C1CCCCC1<br>C1=CC1<br>C=1CC1 |
+| Aromaticity | 방향족 고리 표현<br>`:` 사용 또는 소문자 원자 사용 | C1=CC=CC=C1<br>C:1:C:C:C:C:C1<br>c1ccccc1 |
+| Branching | 괄호를 사용하여 가지 구조 표현<br>작성 순서는 자유로움 | CCC(=O)O<br>FC(Br)(Cl)F<br>BrC(F)(F)Cl<br>C(F)(Cl)(F)Br |
 
 ## SMILES example
-
----
-
 ### Ring & Aromaticity
 
-![image.png](SMILES%20%ED%91%9C%EA%B8%B0%EB%B2%95/image%202.png)
+![image.png](../assets/2025-04-04-cheminformatics-smiles/fig3.png)
 
----
 
 ### Branch
 
-![image.png](SMILES%20%ED%91%9C%EA%B8%B0%EB%B2%95/image%203.png)
+![image.png](../assets/2025-04-04-cheminformatics-smiles/fig4.png)
 
----
 
 ### Excercise (1/2)
 
-![image.png](SMILES%20%ED%91%9C%EA%B8%B0%EB%B2%95/image%204.png)
+![image.png](../assets/2025-04-04-cheminformatics-smiles/fig5.png)
 
 ### Exercise (2/2)
 
-![image.png](SMILES%20%ED%91%9C%EA%B8%B0%EB%B2%95/image%205.png)
+![image.png](../assets/2025-04-04-cheminformatics-smiles/fig6.png)
 
 ### [참고자료]
 
 ---
 
-https://process-mining.tistory.com/158
+[SMILES표기법이란? (SMILES representation 설명 및 장단점)](https://process-mining.tistory.com/158)
 
 Weininger, D. (1988). SMILES, a chemical language and information system. 1. Introduction to methodology and encoding rules. *Journal of chemical information and computer sciences*, *28*(1), 31-36.
-
----
-
-[제목 없음](SMILES%20%ED%91%9C%EA%B8%B0%EB%B2%95/%EC%A0%9C%EB%AA%A9%20%EC%97%86%EC%9D%8C%201baee3c1d96b817fa1eccf021b20ac28.csv)
-
----
-
-<aside>
-⚙ 　｜　[Main Page](https://www.notion.so/Jin-s-Study-194ee3c1d96b80a2b0cce212cc8d597e?pvs=21)　｜　[Category](https://www.notion.so/194ee3c1d96b8190b180c83ff97a5f40?pvs=21)　｜　 [Tags](https://www.notion.so/194ee3c1d96b81e98e40ce44821c019d?pvs=21)　｜　[About Me](https://www.notion.so/About-Me-194ee3c1d96b81878ad7c01e4598e60e?pvs=21)　｜　[Contact](https://www.notion.so/Contact-194ee3c1d96b815fbf95f262b2ade489?pvs=21)　｜
-
-</aside>
