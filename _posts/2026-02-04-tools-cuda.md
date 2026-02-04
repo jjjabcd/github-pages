@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "PyTorch 입문: CPU vs GPU 버전 차이와 CUDA 가속 확인하기"
-date: 2026-01-12
+date: 2026-02-04
 categories: [tools]
 tags:
   - pytorch
